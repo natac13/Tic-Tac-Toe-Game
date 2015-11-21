@@ -30,9 +30,7 @@ const port = isDevelopment ? 3000 : process.env.PORT;
 const public_path = path.join(__dirname, 'public');
 
 app.use(express.static(public_path))
-    // .listen(port, function() {
-    //     console.log('Listening on Port ' + port);
-    // });;
+
     // .get('/', function(req, res) {
     //     res.sendFile('index.html', {root: public_path})
     // });
@@ -47,4 +45,4 @@ if(isDevelopment) {
 }
 
 
-export default app;
+module.exports = app;
