@@ -1,0 +1,9 @@
+#!/usr/bin/env babel-node
+'use strict';
+// var app = require('./../server');
+var port = process.env.PORT || 8080;
+import app from './../server';
+
+app.listen(port, function() {
+    console.log('Listening on Port ' + port);
+});

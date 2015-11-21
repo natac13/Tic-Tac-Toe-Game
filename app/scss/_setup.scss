@@ -1,0 +1,22 @@
+
+// $base-font-size: 16px;
+// $base-line-heigth: $base-font-size * 1.25;
+@import 'mixinsCompass';
+
+@include establish-baseline;
+
+html {
+    font-size: #{$base-font-size} * 62.5%; /* Sets up with Base 10 */
+}
+
+
+
+@mixin font-size($amount: 1.6, $height: 1.25) {
+    $line: $amount * $height;
+    font-size: ($amount * 10) + px;
+    line-height: ($line) + px;
+    font-size: ($amount) + rem;
+    line-height: ($line) + rem;
+}
+
+
