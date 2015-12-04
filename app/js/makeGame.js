@@ -1,4 +1,3 @@
-import Immutable from 'immutable';
 import { createStore, combineReducers } from 'redux';
 import _ from 'lodash';
 
@@ -37,11 +36,11 @@ export const gameApp = combineReducers({
 
 const store = createStore(gameApp);
 
-function render() {
-    console.log(store.getState());
-}
+// function render() {
+//     console.log(store.getState());
+// }
 
-store.subscribe(render);
+// store.subscribe(render);
 
 export default store;
 

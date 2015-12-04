@@ -6,6 +6,9 @@ import _          from 'lodash';
 import { createStore } from 'redux';
 import { gameApp }      from '../app/js/makeGame';
 
+/*** actions ***/
+import userMarker from '../app/actions/userMarker';
+
 
 
 
@@ -27,30 +30,15 @@ describe('updating with one or more user marker(s)', () => {
     });
 
     it('should return new game state with correctly placed marker', () => {
-        const action = {
-            type: 'PLACE_USER_MARKER',
-            square: 'a3',
-            marker: 'X'
-        };
-        store.dispatch(action);
+        store.dispatch(userMarker('a3'));
         expect(store.getState().ticTacGame.a3).to.equal('X');
     });
 
     it('should return new game state after a few actions passed.', () => {
         const { user, comp } = store.getState().settings;
-        const action1 = {
-            type: 'PLACE_USER_MARKER',
-            square: 'a3',
-            marker: user
-        };
-        const action2 = {
-            type: 'PLACE_USER_MARKER',
-            square: 'b3',
-            marker: user
-        };
 
-        store.dispatch(action1);
-        store.dispatch(action2);
+        store.dispatch(userMarker('a3'));
+        store.dispatch(userMarker('b3'));
         const { ticTacGame } = store.getState();
         expect(ticTacGame.a3).to.equal('X');
         expect(ticTacGame.b3).to.equal('X');

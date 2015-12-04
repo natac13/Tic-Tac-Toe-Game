@@ -4,9 +4,9 @@ import _ from 'lodash';
 const Square = ({ placeMarker, square, marker }) => {
 
     return (
-        <div className="btn btn-primary btn-lg square" onClick={placeMarker} id={square}>
+        <button className="btn btn-primary square" onClick={placeMarker} id={square}>
             {!!marker && marker}
-        </div>
+        </button>
     );
 
 }
