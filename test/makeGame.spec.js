@@ -1,5 +1,8 @@
 import { expect } from 'chai'
 import _          from 'lodash';
+
+// for testing I import the combined reducer function to pass to the createStore
+// from Redux to make a new state tree before each test.
 import { createStore } from 'redux';
 import { gameApp }      from '../app/js/makeGame';
 

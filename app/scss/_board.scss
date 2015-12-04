@@ -3,4 +3,15 @@
   display: inline-block;
   height: 100px;
   width: 100px;
+  margin: 0.5em;
+
+}
+
+.board {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  background: rgba(#005500, 0.5);
+  padding: 1em 2em;
 }

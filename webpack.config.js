@@ -11,7 +11,7 @@ module.exports = {
     devtool: 'eval',
     entry: [
         // The script refreshing the browser on none hot updates
-        'webpack-dev-server/client?http://localhost:3000',
+        'webpack-dev-server/client?http://localhost:3003',
         // For hot style updates
         'webpack/hot/only-dev-server',
         // the main application script

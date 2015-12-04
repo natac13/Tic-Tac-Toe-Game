@@ -8,7 +8,12 @@ import store                from './js/makeGame';
 
 import Main from './Main';
 
+const deploy = () => {
+    render(
+        <Main store={store}/>,
+        document.getElementById('app'));
 
-render(
-    <Main store={store}/>,
-    document.getElementById('app'));
+}
+
+store.subscribe(deploy);
+deploy();
