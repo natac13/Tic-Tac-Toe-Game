@@ -33,11 +33,13 @@ module.exports = {
         new webpack.NoErrorsPlugin()
 
     ],
+    resolve: {
+        extensions: ['', '.js', '.jsx']
+    },
     module: {
         loaders: [
             {
                 test: /\.jsx?$/,
-                include: [path.join(__dirname, 'app')],
                 exclude: /(node_modules|bower_components)/,
                 loader: 'babel',
                 query: {

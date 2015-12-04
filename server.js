@@ -26,7 +26,7 @@ const webpackOptions = {
 
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
-const port = isDevelopment ? 3000 : process.env.PORT;
+const port = isDevelopment ? 3003 : process.env.PORT;
 const public_path = path.join(__dirname, 'public');
 
 app.use(express.static(public_path))

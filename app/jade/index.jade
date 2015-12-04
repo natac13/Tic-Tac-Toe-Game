@@ -1,0 +1,16 @@
+extends ./layout.jade
+block content
+    header
+        h1 Tic Tac Toe
+
+    .container
+        .game-board
+            each row in ['a', 'b', 'c']
+                .row
+                    each col in [1, 2, 3]
+                        div(class='square' id='#{row}#{col}')
+
+
+    include ./scripts.jade
+
+
