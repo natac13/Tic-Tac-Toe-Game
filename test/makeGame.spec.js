@@ -7,13 +7,13 @@ import { createStore } from 'redux';
 import { gameApp }      from '../app/js/makeGame';
 
 /*** actions ***/
-import userMarker from '../app/actions/userMarker';
+import addUserMarker from '../app/actions/addUserMarker';
 
 
 
 
 describe('making the game board, which is an object of squares, 9 total', () => {
-    var store;
+    let store;
     beforeEach(() => {
         store = createStore(gameApp);
     });
@@ -24,21 +24,23 @@ describe('making the game board, which is an object of squares, 9 total', () => 
 });
 
 describe('updating with one or more user marker(s)', () => {
-    let store;
+    let store,
+        settings;
     beforeEach(() => {
         store = createStore(gameApp);
+        settings = store.getState().settings;
     });
 
     it('should return new game state with correctly placed marker', () => {
-        store.dispatch(userMarker('a3'));
+        store.dispatch(addUserMarker('a3', settings.user));
         expect(store.getState().ticTacGame.a3).to.equal('X');
     });
 
     it('should return new game state after a few actions passed.', () => {
         const { user, comp } = store.getState().settings;
 
-        store.dispatch(userMarker('a3'));
-        store.dispatch(userMarker('b3'));
+        store.dispatch(addUserMarker('a3', settings.user));
+        store.dispatch(addUserMarker('b3', settings.user));
         const { ticTacGame } = store.getState();
         expect(ticTacGame.a3).to.equal('X');
         expect(ticTacGame.b3).to.equal('X');
@@ -48,7 +50,7 @@ describe('updating with one or more user marker(s)', () => {
 
 describe('Changing the user marker after a selection', () => {
 
-    var store;
+    let store;
     beforeEach(() => {
         store = createStore(gameApp);
     });
