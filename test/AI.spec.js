@@ -8,8 +8,10 @@ import { gameApp }      from '../app/js/makeGame';
 
 /*** actions ***/
 import addUserMarker from '../app/actions/addUserMarker';
+import addCompMarker from '../app/actions/addCompMarker';
 
-import compTurn, { blockAnyTwo }from '../app/utils/compTurn';
+import compTurn from '../app/utils/compTurn';
+import blockAnyTwo from '../app/utils/blockAnyTwo';
 
 
 describe('The blocking AI for tic tac toe', () => {
@@ -72,4 +74,22 @@ describe('The blocking AI for tic tac toe', () => {
         blockAnyTwo(store);
         expect(store.getState().ticTacGame.a3).to.equal('O');
     });
+});
+
+describe('AI to capture a win!', () => {
+    let store,
+        settings;
+    beforeEach(() => {
+        store = createStore(gameApp);
+        settings = store.getState().settings;
+    });
+
+    it('should place winning marker when 2 in top row', () => {
+        store.dispatch(addCompMarker('a1', settings.comp));
+        store.dispatch(addCompMarker('a2', settings.comp));
+
+        completeAnyTwo(store);
+        expect(store.getState().ticTacGame.a3).to.equal('O');
+    })
+
 });

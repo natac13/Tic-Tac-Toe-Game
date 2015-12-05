@@ -2,18 +2,11 @@
 
 @include establish-baseline;
 
-html {
-  font-size: #{$base-font-size} * 62.5%; /* Sets up with Base 10 */
-}
 
 
 
-@mixin font-size($amount: 1.6, $height: 1.25) {
-  $line: $amount * $height;
-  font-size: ($amount * 10) + px;
-  line-height: ($line) + px;
-  font-size: ($amount) + rem;
-  line-height: ($line) + rem;
-}
+
+$square-color: #3A1818;
+$text-color: white;
 
 

@@ -23,7 +23,7 @@ describe('making the game board, which is an object of squares, 9 total', () => 
     });
 });
 
-describe('updating with one or more user marker(s)', () => {
+describe('updating with one or more user marker(s) using .dispatch()', () => {
     let store,
         settings;
     beforeEach(() => {

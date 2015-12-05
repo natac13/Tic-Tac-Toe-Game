@@ -1,9 +1,17 @@
 .square {
-  background: #440000;
+  background: $square-color;
   display: inline-block;
   height: 100px;
   width: 100px;
   margin: 0.5em;
+  vertical-align: top;
+  border-radius: 15px;
+  color: $text-color;
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    background: lighten($square-color, 30%);
+  }
 
 }
 
@@ -14,4 +22,7 @@
   left: 50%;
   background: rgba(#005500, 0.5);
   padding: 1em 2em;
+}
+
+.row {
 }

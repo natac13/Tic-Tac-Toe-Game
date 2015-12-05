@@ -33,7 +33,7 @@ class Main extends Component {
     render() {
         const { ticTacGame, settings } = this.store.getState();
         return (
-            <div className="container">
+            <div className="col span_3_of_3">
                 <header>
                   <h1>Tic Tac Toe</h1>
                 </header>

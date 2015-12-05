@@ -11,7 +11,8 @@ import Main from './Main';
 const deploy = () => {
     render(
         <Main store={store}/>,
-        document.getElementById('app'));
+        document.getElementById('app')
+    );
 
 }
 
