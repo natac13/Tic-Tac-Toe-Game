@@ -1,9 +1,12 @@
 import _ from 'lodash';
 
+/*** actions ***/
 import addCompMarker from '../actions/addCompMarker';
 
 /*** ai functions ***/
-import blockAnyTwo from './blockAnyTwo';
+import completeAnyTwo from './AI/completeAnyTwo';
+import blockAnyTwo    from './AI/blockAnyTwo';
+import boardFull      from './AI/boardFull';
 
 
 const cornorsEmpty = (store) => {
@@ -11,30 +14,29 @@ const cornorsEmpty = (store) => {
     const cornors = ['a1', 'a3', 'c1', 'c3'];
         if (cornors.every(square =>  board[square] === '')) {
             store.dispatch(addCompMarker('a1', settings.comp));
+            return true
+        } else {
+            return false;
         }
 
 }
-
-const boardFull = (board) => {
-    return _.every(board, function(value) {
-        return value !== '';
-    });
-}
-
 
 
 
 
 
 const compTurn = (store) => {
-    const { ticTacGame: gameBoard, settings } = store.getState();
     const edges = ['a2', 'b1', 'b3', 'c2'];
 
+//// need to work on this part since comp can mark multiple moves
 
 
+    if (completeAnyTwo(store) ||
+        blockAnyTwo(store) ||
+        cornorsEmpty(store)) { console.log('your turn')}
+    if (boardFull(store)) { console.log('Full board game over'); }
 
-    blockAnyTwo(store);
-    cornorsEmpty(store);
+
 
 
 

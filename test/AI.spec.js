@@ -11,7 +11,8 @@ import addUserMarker from '../app/actions/addUserMarker';
 import addCompMarker from '../app/actions/addCompMarker';
 
 import compTurn from '../app/utils/compTurn';
-import blockAnyTwo from '../app/utils/blockAnyTwo';
+import blockAnyTwo from '../app/utils/AI/blockAnyTwo';
+import completeAnyTwo from '../app/utils/AI/completeAnyTwo';
 
 
 describe('The blocking AI for tic tac toe', () => {
@@ -22,6 +23,7 @@ describe('The blocking AI for tic tac toe', () => {
         settings = store.getState().settings;
     });
 
+    /*** Rows ***/
     it('block when there are 2 user markers the top row', () => {
         store.dispatch(addUserMarker('a2', settings.user));
         store.dispatch(addUserMarker('a3', settings.user));
@@ -90,6 +92,20 @@ describe('AI to capture a win!', () => {
 
         completeAnyTwo(store);
         expect(store.getState().ticTacGame.a3).to.equal('O');
-    })
+    });
+    it('should place winning marker when 2 in middle row', () => {
+        store.dispatch(addCompMarker('b1', settings.comp));
+        store.dispatch(addCompMarker('b3', settings.comp));
+
+        completeAnyTwo(store);
+        expect(store.getState().ticTacGame.b2).to.equal('O');
+    });
+    it('should place winning marker when 2 in bottom row', () => {
+        store.dispatch(addCompMarker('c2', settings.comp));
+        store.dispatch(addCompMarker('c3', settings.comp));
+
+        completeAnyTwo(store);
+        expect(store.getState().ticTacGame.c1).to.equal('O');
+    });
 
 });

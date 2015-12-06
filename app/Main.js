@@ -18,7 +18,6 @@ class Main extends Component {
     placeMarker(event) {
         const { id: square } = event.target
         const { store } = this;
-        console.log(store.getState().settings);
         const { user: userMarker } = store.getState().settings
 
         ;
@@ -37,8 +36,8 @@ class Main extends Component {
                 <header>
                   <h1>Tic Tac Toe</h1>
                 </header>
-
-                <Board placeMarker={this.placeMarker.bind(this)} gameBoard={ticTacGame} />
+                {/*Can pass the spread version of the state to the component and get all props from it that way in Board.*/}
+                <Board placeMarker={this.placeMarker.bind(this)} gameBoard={ticTacGame} {...this.store.getState()}/>
 
 
             </div>

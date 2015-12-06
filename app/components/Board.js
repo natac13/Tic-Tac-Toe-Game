@@ -6,6 +6,8 @@ import Square from './Square';
 export default class Board extends Component {
     constructor(props) {
         super(props)
+        let { settings, ticTacGame } = this.props
+        console.log(`settings ${JSON.stringify(settings, null, 4)}`);
     }
 
     render() {

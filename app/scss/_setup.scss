@@ -10,3 +10,10 @@ $square-color: #3A1818;
 $text-color: white;
 
 
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
