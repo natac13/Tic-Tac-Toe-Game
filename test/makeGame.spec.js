@@ -7,7 +7,8 @@ import { createStore } from 'redux';
 import { gameApp }      from '../app/js/makeGame';
 
 /*** actions ***/
-import addUserMarker from '../app/actions/addUserMarker';
+// import addUserMarker from '../app/actions/addUserMarker';
+import { addUserMarker } from '../app/actions/board.js';
 
 
 

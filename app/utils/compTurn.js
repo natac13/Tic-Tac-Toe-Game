@@ -1,7 +1,8 @@
 import _ from 'lodash';
 
 /*** actions ***/
-import addCompMarker from '../actions/addCompMarker';
+// import addCompMarker from '../actions/addCompMarker';
+import { addCompMarker } from '../actions/board';
 
 /*** ai functions ***/
 import completeAnyTwo from './AI/completeAnyTwo';
