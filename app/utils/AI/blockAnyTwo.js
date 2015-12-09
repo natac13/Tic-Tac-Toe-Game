@@ -1,5 +1,5 @@
 /*** actions ***/
-import addCompMarker from '../../actions/addCompMarker';
+import { addCompMarker } from '../../actions/board';
 
 /*** Testing helpers ***/
 import runTest from './helpers/runTest';

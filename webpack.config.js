@@ -5,7 +5,7 @@ var webpack = require('webpack');
 
 
 var buildPath = path.join(__dirname, 'public', 'assets');
-var entry = path.join(__dirname, 'app', 'app.js');
+var entry = path.join(__dirname, 'index.js');
 
 module.exports = {
     devtool: 'eval',

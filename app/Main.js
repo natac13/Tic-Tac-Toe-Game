@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Board from './components/Board';
 
 /*** actions ***/
-import addUserMarker from './actions/addUserMarker';
+import { addUserMarker } from './actions/board';
 
 /*** AI ***/
 import compTurn from './utils/compTurn';
