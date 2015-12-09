@@ -26,7 +26,7 @@ module.exports = {
         inline: true,
         progress: true,
         // Only appears to work when running server from CLI and not server.js
-        contentBase: 'public/',
+        contentBase: './',
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
