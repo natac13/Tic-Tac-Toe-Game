@@ -7,9 +7,8 @@
     "test": "mocha --compilers js:babel-core/register test/*.js",
     "postinstall": "webpack -p --config ./webpack.production.config.js --progress --colors",
     "start": "babel-node server.js",
-    "x": "babel-node app/js/makeGame.js",
     "jade": "jade -w -P ./app/jade/index.jade -o ./public/",
-    "production": "NODE_ENV=production webpack -p --config ./webpack.production.config.js",
+    "production": "NODE_ENV=production webpack -p --config ./webpack.production.config.js --progress --colors",
     "sim": "NODE_ENV=production webpack -p --config ./webpack.production.config.js && NODE_ENV=production babel-node bin/www"
   },
   "keywords": [

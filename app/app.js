@@ -4,9 +4,12 @@ import React, { Component } from 'react';
 import { render }           from 'react-dom';
 
 import { Provider }         from 'react-redux';
-import store                from './js/makeGame';
+import { createStore }      from 'redux';
+import rootReducer          from './reducers'
 
 import Main from './Main';
+
+const store = createStore(rootReducer);
 
 const deploy = () => {
     render(
@@ -18,3 +21,4 @@ const deploy = () => {
 
 store.subscribe(deploy);
 deploy();
+

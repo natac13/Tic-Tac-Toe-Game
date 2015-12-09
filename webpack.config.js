@@ -3,9 +3,9 @@
 var path = require('path');
 var webpack = require('webpack');
 
+var buildPath = path.join(__dirname);
+var entry = path.join(__dirname, 'app', 'app.js');
 
-var buildPath = path.join(__dirname, 'public', 'assets');
-var entry = path.join(__dirname, 'index.js');
 
 module.exports = {
     devtool: 'eval',
@@ -26,7 +26,7 @@ module.exports = {
         inline: true,
         progress: true,
         // Only appears to work when running server from CLI and not server.js
-        contentBase: 'public/',
+        contentBase: './',
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),

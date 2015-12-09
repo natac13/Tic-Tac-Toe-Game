@@ -22,6 +22,12 @@ const cornorsEmpty = (gameBoard, actions, marker) => {
 }
 
 
+const takeCenterWhenEmpty = (store) => {
+    let { ticTacGame: gameBoard, settings }= store.getState();
+    if(gameBoard.b2 === '') {
+        store.dispatch(addCompMarker('b2', settings.comp))
+    }
+}
 
 
 
@@ -35,6 +41,7 @@ const compTurn = (gameBoard, actions, marker) => {
         blockAnyTwo(gameBoard, actions, marker) ||
         cornorsEmpty(gameBoard, actions, marker)) { console.log('your turn')}
     if (boardFull(gameBoard)) { console.log('Full board game over'); }
+
 
 
 

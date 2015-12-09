@@ -1,1 +1,3 @@
-issues components/Main.js for some reason the store state does not get updated when the action is called.
+got gh-page working need index.html in root with relative link to bundle.js
+which has to be the production version no t develop webpack
+
