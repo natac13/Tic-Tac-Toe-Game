@@ -12,7 +12,7 @@ import compTurn from '../utils/compTurn';
 class Main extends Component {
     constructor(props, context) {
         super(props, context);
-        console.log(this.props);
+        this.canPlay = false;
     }
 
     placeMarker(event) {
@@ -23,15 +23,21 @@ class Main extends Component {
 
 
         actions.addUserMarker(square, user);
+        this.canPlay = true;
 
         // I am passing in an object because that is easiery for now to convert
         // since the store was an objectt after calling .getState()
     }
 
-    componentWillReceiveProps() {
-const { gameBoard, actions, settings } = this.props;
-        setTimeout(() => {compTurn(gameBoard, actions, settings.comp);}, 300);
+    componentDidUpdate() {
+        const { gameBoard, actions, settings } = this.props;
+        console.log(gameBoard);
+        if(this.canPlay) {
+            compTurn(gameBoard, actions, settings.comp);
+        }
+        this.canPlay = false;
     }
+
 
     render() {
         const { gameBoard, settings } = this.props;
