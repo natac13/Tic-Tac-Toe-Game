@@ -1,12 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import Square from './Square';
 
 
 export default class Board extends Component {
+
+    static propTypes = {
+        placeMarker: PropTypes.func.isRequired,
+        gameBoard: PropTypes.object.isRequired,
+        settings: PropTypes.object.isRequired
+    }
+
     constructor(props) {
         super(props)
-        let { settings, ticTacGame } = this.props
+        let { gameboard, settings } = this.props
         console.log(`settings ${JSON.stringify(settings, null, 4)}`);
     }
 

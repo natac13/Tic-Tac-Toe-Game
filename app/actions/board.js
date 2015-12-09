@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes';
-
-export const addUserMarker = (square, userMarker) => {
+console.log(types.PLACE_USER_MARKER);
+export function addUserMarker (square, userMarker) {
     return {
             type: types.PLACE_USER_MARKER,
             square: square,
@@ -8,7 +8,8 @@ export const addUserMarker = (square, userMarker) => {
         };
 }
 
-export const addCompMarker = (square, compMarker) => {
+export function addCompMarker (square, compMarker) {
+
     return {
             type: types.PLACE_USER_MARKER,
             square: square,

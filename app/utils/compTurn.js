@@ -10,11 +10,10 @@ import blockAnyTwo    from './AI/blockAnyTwo';
 import boardFull      from './AI/boardFull';
 
 
-const cornorsEmpty = (store) => {
-    let { ticTacGame: board, settings }= store.getState();
+const cornorsEmpty = (gameBoard, actions, marker) => {
     const cornors = ['a1', 'a3', 'c1', 'c3'];
-        if (cornors.every(square =>  board[square] === '')) {
-            store.dispatch(addCompMarker('a1', settings.comp));
+        if (cornors.every(square =>  gameBoard[square] === '')) {
+           actions.addCompMarker('a1', marker);
             return true
         } else {
             return false;
@@ -26,16 +25,16 @@ const cornorsEmpty = (store) => {
 
 
 
-const compTurn = (store) => {
+const compTurn = (gameBoard, actions, settings) => {
     const edges = ['a2', 'b1', 'b3', 'c2'];
 
 //// need to work on this part since comp can mark multiple moves
 
 
-    if (completeAnyTwo(store) ||
-        blockAnyTwo(store) ||
-        cornorsEmpty(store)) { console.log('your turn')}
-    if (boardFull(store)) { console.log('Full board game over'); }
+    if (completeAnyTwo(gameBoard, actions, settings.comp) ||
+        blockAnyTwo(gameBoard, actions, settings.comp) ||
+        cornorsEmpty(gameBoard, actions, settings.comp)) { console.log('your turn')}
+    if (boardFull(gameBoard)) { console.log('Full board game over'); }
 
 
 

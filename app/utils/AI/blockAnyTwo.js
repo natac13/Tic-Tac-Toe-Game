@@ -1,13 +1,12 @@
 /*** actions ***/
-import addCompMarker from '../../actions/addCompMarker';
+import { addCompMarker } from '../../actions/board';
 
 /*** Testing helpers ***/
 import runTest from './helpers/runTest';
 import makeStateMap from './helpers/makeStateMap';
 
 
-const blockAnyTwo = (store) => {
-    const { ticTacGame: gameBoard, settings } = store.getState();
+const blockAnyTwo = (gameBoard, actions, marker) => {
     /**
      * Constructed so that the index of each possible sequence corresponds to the
      * position the computer need to place their marker.
@@ -21,7 +20,7 @@ const blockAnyTwo = (store) => {
     let boardStateMap = makeStateMap(gameBoard);
 
 
-    return runTest(boardStateMap, possibles, store);
+    return runTest(boardStateMap, possibles, actions, marker);
 
 
 }

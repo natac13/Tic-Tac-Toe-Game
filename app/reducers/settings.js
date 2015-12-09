@@ -1,9 +1,9 @@
-let info = {
+const initialState = {
     user: 'X',
     comp: 'O'
 };
 
-const settings = (state = info, action) => {
+const settings = (state = initialState, action) => {
     switch (action.type) {
         case 'SET_USER_MARKER':
             return {

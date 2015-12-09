@@ -1,11 +1,10 @@
 import _ from 'lodash';
 
 /*** actions ***/
-import addCompMarker from '../../../actions/addCompMarker';
+import { addCompMarker } from '../../../actions/board';
 /** returns true as soon as it finds a truthy value from .some()
 which is checking to see if there is a possible match to the patterns */
-const runTest = (stateMap, patterns, store) => {
-    let { settings } = store.getState();
+const runTest = (stateMap, patterns, actions, marker) => {
     return _.some(stateMap, function(mapPair) {
         // make vars out of the zipped list values
         let [ sequence, boardMap ] = mapPair;
@@ -19,7 +18,7 @@ const runTest = (stateMap, patterns, store) => {
          */
         if (_.includes(patterns, sequence)) {
             let pos = boardMap[patterns.indexOf(sequence)];
-            store.dispatch(addCompMarker(pos, settings.comp));
+            actions.addCompMarker(pos, marker);
             return true;
         } else {
             return false;

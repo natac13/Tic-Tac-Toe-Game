@@ -1,5 +1,4 @@
 import { createStore, combineReducers } from 'redux';
-import _ from 'lodash';
 
 import settings from './gameSettings';
 

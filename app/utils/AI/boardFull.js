@@ -5,9 +5,9 @@ import _ from 'lodash';
  * @param  {Object} store Redux Store
  * @return {boolean}       true if full board.
  */
-const boardFull = (store) => {
-    const board = store.getState().ticTacGame;
-    return _.every(board, function(value) {
+const boardFull = (gameBoard) => {
+
+    return _.every(gameBoard, function(value) {
         return value !== '';
 
     });

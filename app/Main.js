@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Board from './components/Board';
 
 /*** actions ***/
-import addUserMarker from './actions/addUserMarker';
+import { addUserMarker } from './actions/board';
 
 /*** AI ***/
 import compTurn from './utils/compTurn';
@@ -30,14 +30,13 @@ class Main extends Component {
     }
 
     render() {
-        const { ticTacGame, settings } = this.store.getState();
         return (
             <div className="col span_3_of_3">
                 <header>
                   <h1>Tic Tac Toe</h1>
                 </header>
                 {/*Can pass the spread version of the state to the component and get all props from it that way in Board.*/}
-                <Board placeMarker={this.placeMarker.bind(this)} gameBoard={ticTacGame} {...this.store.getState()}/>
+                <Board placeMarker={this.placeMarker.bind(this)} {...this.store.getState()}/>
 
 
             </div>
