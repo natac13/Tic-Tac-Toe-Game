@@ -11,9 +11,9 @@ import boardFull      from './AI/boardFull';
 
 
 const cornorsEmpty = (store) => {
-    let { ticTacGame: board, settings }= store.getState();
+    let { ticTacGame: gameBoard, settings }= store.getState();
     const cornors = ['a1', 'a3', 'c1', 'c3'];
-        if (cornors.every(square =>  board[square] === '')) {
+        if (cornors.every(square =>  gameBoard[square] === '')) {
             store.dispatch(addCompMarker('a1', settings.comp));
             return true
         } else {
@@ -23,6 +23,12 @@ const cornorsEmpty = (store) => {
 }
 
 
+const takeCenterWhenEmpty = (store) => {
+    let { ticTacGame: gameBoard, settings }= store.getState();
+    if(gameBoard.b2 === '') {
+        store.dispatch(addCompMarker('b2', settings.comp))
+    }
+}
 
 
 
@@ -34,7 +40,8 @@ const compTurn = (store) => {
 
     if (completeAnyTwo(store) ||
         blockAnyTwo(store) ||
-        cornorsEmpty(store)) { console.log('your turn')}
+        cornorsEmpty(store) ||
+        takeCenterWhenEmpty(store)) { console.log('your turn')}
     if (boardFull(store)) { console.log('Full board game over'); }
 
 
