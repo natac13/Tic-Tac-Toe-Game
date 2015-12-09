@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Board from './Board';
 
 /*** actions ***/
-import { addUserMarker } from '../actions/board';
+import { addUserMarker } from '../actions/game';
 
 /*** AI ***/
 import compTurn from '../utils/compTurn';
@@ -12,22 +12,25 @@ import compTurn from '../utils/compTurn';
 class Main extends Component {
     constructor(props, context) {
         super(props, context);
+        console.log(this.props);
     }
 
     placeMarker(event) {
         const { gameBoard, actions, settings } = this.props;
-        const { id: square } = event.target
-        const { user: userMarker } = settings
+        const { id: square } = event.target;
+        const { user, comp} = settings;
 
-        ;
-        actions.addUserMarker(square, userMarker);
+
+
+        actions.addUserMarker(square, user);
+
         // I am passing in an object because that is easiery for now to convert
         // since the store was an objectt after calling .getState()
-        compTurn({gameBoard, actions, settings});
     }
 
-    componentDidMount() {
-
+    componentWillReceiveProps() {
+const { gameBoard, actions, settings } = this.props;
+        setTimeout(() => {compTurn(gameBoard, actions, settings.comp);}, 300);
     }
 
     render() {

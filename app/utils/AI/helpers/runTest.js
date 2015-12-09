@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 /*** actions ***/
-import { addCompMarker } from '../../../actions/board';
+import { addCompMarker } from '../../../actions/game';
 /** returns true as soon as it finds a truthy value from .some()
 which is checking to see if there is a possible match to the patterns */
 const runTest = (stateMap, patterns, actions, marker) => {

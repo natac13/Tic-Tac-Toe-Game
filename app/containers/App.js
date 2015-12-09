@@ -4,12 +4,8 @@ import { connect } from 'react-redux'
 
 import Main from '../components/Main';
 
-import * as ActionCreator from '../actions/board';
+import * as ActionCreator from '../actions/game';
 
-
-/// should be similar to the Main.js file while app.js will be the index.js file
-/// at the root of the example project ToDo MVC
-///
 
 class App extends Component {
 
@@ -20,8 +16,8 @@ class App extends Component {
     }
 
     render() {
-        const { gameBoard, actions } = this.props;
-        console.log(JSON.stringify(ActionCreator, null, 4));
+
+
         return (
             <div>
                 <Main {...this.props} />

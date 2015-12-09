@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 /*** actions ***/
 // import addCompMarker from '../actions/addCompMarker';
-import { addCompMarker } from '../actions/board';
+import { addCompMarker } from '../actions/game';
 
 /*** ai functions ***/
 import completeAnyTwo from './AI/completeAnyTwo';
@@ -25,17 +25,16 @@ const cornorsEmpty = (gameBoard, actions, marker) => {
 
 
 
-const compTurn = (gameBoard, actions, settings) => {
+const compTurn = (gameBoard, actions, marker) => {
     const edges = ['a2', 'b1', 'b3', 'c2'];
 
 //// need to work on this part since comp can mark multiple moves
 
 
-    if (completeAnyTwo(gameBoard, actions, settings.comp) ||
-        blockAnyTwo(gameBoard, actions, settings.comp) ||
-        cornorsEmpty(gameBoard, actions, settings.comp)) { console.log('your turn')}
+    if (completeAnyTwo(gameBoard, actions, marker) ||
+        blockAnyTwo(gameBoard, actions, marker) ||
+        cornorsEmpty(gameBoard, actions, marker)) { console.log('your turn')}
     if (boardFull(gameBoard)) { console.log('Full board game over'); }
-
 
 
 

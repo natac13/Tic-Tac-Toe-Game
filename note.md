@@ -1,0 +1,1 @@
+issues components/Main.js for some reason the store state does not get updated when the action is called.

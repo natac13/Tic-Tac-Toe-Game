@@ -10,7 +10,8 @@ import { gameApp }      from '../app/js/makeGame';
 // import addUserMarker from '../app/actions/addUserMarker';
 // import addCompMarker from '../app/actions/addCompMarker';
 
-import { addCompMarker, addUserMarker } from '../app/actions/board';
+import { addCompMarker, addUserMarker } from '../app/actions/game';
+console.log(addUserMarker, addCompMarker + '222');
 
 import compTurn from '../app/utils/compTurn';
 import blockAnyTwo from '../app/utils/AI/blockAnyTwo';
