@@ -4,7 +4,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 
-var buildPath = path.join(__dirname, 'public', 'assets');
+var buildPath = path.join(__dirname, 'assets');
 var entry = path.join(__dirname, 'app', 'app.js');
 module.exports = {
     // real source-map for production
