@@ -28,7 +28,6 @@ class Main extends Component {
 
     componentDidUpdate() {
         const { gameBoard, actions, settings } = this.props;
-        console.log(gameBoard);
         if(this.canPlay) {
             let square = compTurn(gameBoard);
             actions.addCompMarker(square, settings.comp);

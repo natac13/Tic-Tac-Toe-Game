@@ -1,7 +1,10 @@
 import _ from 'lodash';
 
-/** returns true as soon as it finds a truthy value from .some()
-which is checking to see if there is a possible match to the patterns */
+/** Lets .some() run until it finds a square value based off the stateMap which
+is a zipped list of sliced sequences that are from the gameBoard state; while
+the other is the 'label' for those squares in the same order.
+@param zipped-array stateMap
+@param array patterns*/
 const runTest = (stateMap, patterns) => {
     let pos;
     _.some(stateMap, function(mapPair) {
@@ -13,11 +16,11 @@ const runTest = (stateMap, patterns) => {
         to follow this AI 'rule'.
         Finding the index of the sequence in the patterns array I can get
         the square 'name' (etc 'a1' or 'c3') to use to call the action which
-        will describe the mutation to the state.
+        will describe the mutation to the state. Done higher in Main.js Component
          */
         if (_.includes(patterns, sequence)) {
             pos = boardMap[patterns.indexOf(sequence)];
-            // actions.addCompMarker(pos, marker);
+            return true;
         } else {
             return false;
         }
