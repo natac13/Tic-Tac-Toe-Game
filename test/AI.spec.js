@@ -35,9 +35,9 @@ describe('The blocking AI for tic tac toe', () => {
         let actions = {
             addCompMarker
         }
-        console.log(board, actions, settings);
-        blockAnyTwo(board, actions, settings.comp);
-        store.dispatch(addCompMarker('a1', settings.comp))
+        let square = blockAnyTwo(board, actions, settings.comp);
+        console.log(square);
+        store.dispatch(addCompMarker(square, settings.comp))
         expect(store.getState().ticTacGame.a1).to.equal('O');
     });
     it('should block when there are 2 user markers in the middle row at b1 and b3', () => {

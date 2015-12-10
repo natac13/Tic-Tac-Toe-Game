@@ -9,7 +9,6 @@ export function addUserMarker(square, userMarker) {
 }
 
 export function addCompMarker(square, compMarker) {
-
     return {
             type: types.PLACE_USER_MARKER,
             square: square,

@@ -3,7 +3,8 @@ import _ from 'lodash';
 /** returns true as soon as it finds a truthy value from .some()
 which is checking to see if there is a possible match to the patterns */
 const runTest = (stateMap, patterns, actions, marker) => {
-    return _.some(stateMap, function(mapPair) {
+    let pos;
+    _.some(stateMap, function(mapPair) {
         // make vars out of the zipped list values
         let [ sequence, boardMap ] = mapPair;
         /*** The Test ***/
@@ -15,13 +16,13 @@ const runTest = (stateMap, patterns, actions, marker) => {
         will describe the mutation to the state.
          */
         if (_.includes(patterns, sequence)) {
-            let pos = boardMap[patterns.indexOf(sequence)];
-            actions.addCompMarker(pos, marker);
-            return true;
+            pos = boardMap[patterns.indexOf(sequence)];
+            // actions.addCompMarker(pos, marker);
         } else {
             return false;
         }
     });
+    return pos;
 }
 
 export default runTest;
