@@ -4,21 +4,19 @@ import React, { Component } from 'react';
 import { render }           from 'react-dom';
 
 import { Provider }         from 'react-redux';
-import { createStore }      from 'redux';
-import rootReducer          from './reducers'
+import configureStore       from './store/configureStore';
 
-import Main from './Main';
+import App from './containers/App';
 
-const store = createStore(rootReducer);
+const store = configureStore();
+const rootElement = document.getElementById('app');
 
-const deploy = () => {
-    render(
-        <Main store={store}/>,
-        document.getElementById('app')
-    );
 
-}
+render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    rootElement
+);
 
-store.subscribe(deploy);
-deploy();
-
+// make entry point

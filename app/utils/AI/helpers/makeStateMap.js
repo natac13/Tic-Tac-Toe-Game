@@ -38,8 +38,8 @@ const makeStateMap = (gameBoard) => {
         ['a3', 'b2', 'c1']  // left diagonal
     ];
     /*** Zip the above list together as they are used to simulate the AI ***/
-    const boardStateMap = _.zip(gameStateSection, squareMap);
-    return boardStateMap;
+    return _.zip(gameStateSection, squareMap);
+
 }
 
 export default makeStateMap;

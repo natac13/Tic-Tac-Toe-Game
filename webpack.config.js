@@ -3,7 +3,7 @@
 var path = require('path');
 var webpack = require('webpack');
 
-var buildPath = path.join(__dirname);
+var buildPath = path.join(__dirname, 'assets');
 var entry = path.join(__dirname, 'app', 'app.js');
 
 

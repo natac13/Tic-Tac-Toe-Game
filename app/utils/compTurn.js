@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 /*** actions ***/
 // import addCompMarker from '../actions/addCompMarker';
-import { addCompMarker } from '../actions/game';
+// import { addCompMarker } from '../actions/game';
 
 /*** ai functions ***/
 import completeAnyTwo from './AI/completeAnyTwo';
@@ -22,10 +22,9 @@ const cornorsEmpty = (gameBoard, actions, marker) => {
 }
 
 
-const takeCenterWhenEmpty = (store) => {
-    let { ticTacGame: gameBoard, settings }= store.getState();
+const takeCenterWhenEmpty = (gameBoard, actions, marker) => {
     if(gameBoard.b2 === '') {
-        store.dispatch(addCompMarker('b2', settings.comp))
+        actions.addCompMarker('b2', marker);
     }
 }
 
@@ -39,7 +38,8 @@ const compTurn = (gameBoard, actions, marker) => {
 
     if (completeAnyTwo(gameBoard, actions, marker) ||
         blockAnyTwo(gameBoard, actions, marker) ||
-        cornorsEmpty(gameBoard, actions, marker)) { console.log('your turn')}
+        cornorsEmpty(gameBoard, actions, marker) ||
+        takeCenterWhenEmpty(gameBoard, actions, marker)) { console.log('your turn')}
     if (boardFull(gameBoard)) { console.log('Full board game over'); }
 
 

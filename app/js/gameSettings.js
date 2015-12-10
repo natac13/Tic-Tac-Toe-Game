@@ -1,19 +1,19 @@
-let info = {
-    user: 'X',
-    comp: 'O'
-};
+// let info = {
+//     user: 'X',
+//     comp: 'O'
+// };
 
-const settings = (state = info, action) => {
-    switch (action.type) {
-        case 'SET_USER_MARKER':
-            return {
-                user: action.marker,
-                comp: action.marker === 'X' ? 'O' : 'X'
+// const settings = (state = info, action) => {
+//     switch (action.type) {
+//         case 'SET_USER_MARKER':
+//             return {
+//                 user: action.marker,
+//                 comp: action.marker === 'X' ? 'O' : 'X'
 
-            };
-        default:
-            return state;
-    }
-};
+//             };
+//         default:
+//             return state;
+//     }
+// };
 
-export default settings;
+// export default settings;

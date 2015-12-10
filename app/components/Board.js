@@ -13,8 +13,7 @@ export default class Board extends Component {
 
     constructor(props) {
         super(props)
-        let { gameboard, settings } = this.props
-        console.log(`settings ${JSON.stringify(settings, null, 4)}`);
+        console.log(this.props);
     }
 
     render() {

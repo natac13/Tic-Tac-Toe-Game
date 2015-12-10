@@ -1,10 +1,8 @@
 import { expect } from 'chai'
 import _          from 'lodash';
 
-// for testing I import the combined reducer function to pass to the createStore
-// from Redux to make a new state tree before each test.
-import { createStore } from 'redux';
-import { gameApp }      from '../app/js/makeGame';
+
+import configureStore  from '../app/store/configureStore';
 
 /*** actions ***/
 // import addUserMarker from '../app/actions/addUserMarker';
@@ -16,7 +14,7 @@ import { addUserMarker } from '../app/actions/game';
 describe('making the game board, which is an object of squares, 9 total', () => {
     let store;
     beforeEach(() => {
-        store = createStore(gameApp);
+        store = configureStore();
     });
 
     it('should return an object of size 9', () => {
@@ -28,7 +26,7 @@ describe('updating with one or more user marker(s) using .dispatch()', () => {
     let store,
         settings;
     beforeEach(() => {
-        store = createStore(gameApp);
+        store = configureStore();
         settings = store.getState().settings;
     });
 
@@ -53,7 +51,7 @@ describe('Changing the user marker after a selection', () => {
 
     let store;
     beforeEach(() => {
-        store = createStore(gameApp);
+        store = configureStore();
     });
 
     it('should change the settings on the state to X for user', () => {

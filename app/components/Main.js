@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 /*** Components ***/
 import Board from './Board';
 
-/*** actions ***/
-import { addUserMarker } from '../actions/game';
-
 /*** AI ***/
 import compTurn from '../utils/compTurn';
 
@@ -40,14 +37,13 @@ class Main extends Component {
 
 
     render() {
-        const { gameBoard, settings } = this.props;
         return (
             <div className="col span_3_of_3">
                 <header>
                   <h1>Tic Tac Toe</h1>
                 </header>
                 {/*Can pass the spread version of the state to the component and get all props from it that way in Board.*/}
-                <Board placeMarker={this.placeMarker.bind(this)} gameBoard={gameBoard} settings={settings}/>
+                <Board placeMarker={this.placeMarker.bind(this)} {...this.props}/>
 
 
             </div>

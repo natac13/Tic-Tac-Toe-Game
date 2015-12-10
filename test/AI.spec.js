@@ -5,6 +5,7 @@ import _          from 'lodash';
 // from Redux to make a new state tree before each test.
 import { createStore } from 'redux';
 import { gameApp }      from '../app/js/makeGame';
+import configureStore  from '../app/store/configureStore';
 
 /*** actions ***/
 // import addUserMarker from '../app/actions/addUserMarker';
@@ -22,16 +23,21 @@ describe('The blocking AI for tic tac toe', () => {
     let store,
         settings;
     beforeEach(() => {
-        store = createStore(gameApp);
+        store = configureStore();
         settings = store.getState().settings;
     });
 
     /*** Rows ***/
-    it('block when there are 2 user markers the top row', () => {
+    it('should block when there are 2 user markers the top row', () => {
+        let { ticTacGame: board, settings } = store.getState();
         store.dispatch(addUserMarker('a2', settings.user));
         store.dispatch(addUserMarker('a3', settings.user));
-
-        blockAnyTwo(store);
+        let actions = {
+            addCompMarker
+        }
+        console.log(board, actions, settings);
+        blockAnyTwo(board, actions, settings.comp);
+        store.dispatch(addCompMarker('a1', settings.comp))
         expect(store.getState().ticTacGame.a1).to.equal('O');
     });
     it('should block when there are 2 user markers in the middle row at b1 and b3', () => {
@@ -85,7 +91,7 @@ describe('AI to capture a win!', () => {
     let store,
         settings;
     beforeEach(() => {
-        store = createStore(gameApp);
+        store = configureStore();
         settings = store.getState().settings;
     });
 
