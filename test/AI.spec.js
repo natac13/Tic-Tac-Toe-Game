@@ -29,36 +29,37 @@ describe('The blocking AI for tic tac toe', () => {
 
     /*** Rows ***/
     it('should block when there are 2 user markers the top row', () => {
-        let { ticTacGame: board, settings } = store.getState();
         store.dispatch(addUserMarker('a2', settings.user));
         store.dispatch(addUserMarker('a3', settings.user));
-        let actions = {
-            addCompMarker
-        }
-        console.log(board, actions, settings);
-        blockAnyTwo(board, actions, settings.comp);
-        store.dispatch(addCompMarker('a1', settings.comp))
+        let { ticTacGame: gameBoard } = store.getState();
+
+        let square = blockAnyTwo(gameBoard);
+
+        store.dispatch(addCompMarker(square, settings.comp));
         expect(store.getState().ticTacGame.a1).to.equal('O');
     });
     it('should block when there are 2 user markers in the middle row at b1 and b3', () => {
         store.dispatch(addUserMarker('b1', settings.user));
         store.dispatch(addUserMarker('b3', settings.user));
-
-        blockAnyTwo(store);
+        let { ticTacGame: gameBoard } = store.getState();
+        let square = blockAnyTwo(gameBoard);
+        store.dispatch(addCompMarker(square, settings.comp));
         expect(store.getState().ticTacGame.b2).to.equal('O');
     });
     it('should block when there are 2 user markers in the middle row at b2 and b3', () => {
         store.dispatch(addUserMarker('b2', settings.user));
         store.dispatch(addUserMarker('b3', settings.user));
-
-        blockAnyTwo(store);
+        let { ticTacGame: gameBoard } = store.getState();
+        let square = blockAnyTwo(gameBoard);
+        store.dispatch(addCompMarker(square, settings.comp));
         expect(store.getState().ticTacGame.b1).to.equal('O');
     });
     it('should block when there are 2 user markers in the bottom row at c1 and c2', () => {
         store.dispatch(addUserMarker('c1', settings.user));
         store.dispatch(addUserMarker('c2', settings.user));
-
-        blockAnyTwo(store);
+        let { ticTacGame: gameBoard } = store.getState();
+        let square = blockAnyTwo(gameBoard);
+        store.dispatch(addCompMarker(square, settings.comp));
         expect(store.getState().ticTacGame.c3).to.equal('O');
     });
 
@@ -67,22 +68,25 @@ describe('The blocking AI for tic tac toe', () => {
     it('should block when there are 2 user markers in the first column at a1 and b1', () => {
         store.dispatch(addUserMarker('a1', settings.user));
         store.dispatch(addUserMarker('b1', settings.user));
-
-        blockAnyTwo(store);
+        let { ticTacGame: gameBoard } = store.getState();
+        let square = blockAnyTwo(gameBoard);
+        store.dispatch(addCompMarker(square, settings.comp));
         expect(store.getState().ticTacGame.c1).to.equal('O');
     });
     it('should block when there are 2 user markers in the second column at a2 and c2', () => {
         store.dispatch(addUserMarker('a2', settings.user));
         store.dispatch(addUserMarker('c2', settings.user));
-
-        blockAnyTwo(store);
+        let { ticTacGame: gameBoard } = store.getState();
+        let square = blockAnyTwo(gameBoard);
+        store.dispatch(addCompMarker(square, settings.comp));
         expect(store.getState().ticTacGame.b2).to.equal('O');
     });
     it('should block when there are 2 user markers in the third column at b3 and c3', () => {
         store.dispatch(addUserMarker('b3', settings.user));
         store.dispatch(addUserMarker('c3', settings.user));
-
-        blockAnyTwo(store);
+        let { ticTacGame: gameBoard } = store.getState();
+        let square = blockAnyTwo(gameBoard);
+        store.dispatch(addCompMarker(square, settings.comp));
         expect(store.getState().ticTacGame.a3).to.equal('O');
     });
 });
@@ -98,22 +102,25 @@ describe('AI to capture a win!', () => {
     it('should place winning marker when 2 in top row', () => {
         store.dispatch(addCompMarker('a1', settings.comp));
         store.dispatch(addCompMarker('a2', settings.comp));
-
-        completeAnyTwo(store);
+        let { ticTacGame: gameBoard } = store.getState();
+        let square = completeAnyTwo(gameBoard);
+        store.dispatch(addCompMarker(square, settings.comp));
         expect(store.getState().ticTacGame.a3).to.equal('O');
     });
     it('should place winning marker when 2 in middle row', () => {
         store.dispatch(addCompMarker('b1', settings.comp));
         store.dispatch(addCompMarker('b3', settings.comp));
-
-        completeAnyTwo(store);
+        let { ticTacGame: gameBoard } = store.getState();
+        let square = completeAnyTwo(gameBoard);
+        store.dispatch(addCompMarker(square, settings.comp));
         expect(store.getState().ticTacGame.b2).to.equal('O');
     });
     it('should place winning marker when 2 in bottom row', () => {
         store.dispatch(addCompMarker('c2', settings.comp));
         store.dispatch(addCompMarker('c3', settings.comp));
-
-        completeAnyTwo(store);
+        let { ticTacGame: gameBoard } = store.getState();
+        let square = completeAnyTwo(gameBoard);
+        store.dispatch(addCompMarker(square, settings.comp));
         expect(store.getState().ticTacGame.c1).to.equal('O');
     });
 
