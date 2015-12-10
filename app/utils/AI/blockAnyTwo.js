@@ -3,7 +3,7 @@ import runTest from './helpers/runTest';
 import makeStateMap from './helpers/makeStateMap';
 
 
-const blockAnyTwo = (gameBoard, actions, marker) => {
+const blockAnyTwo = (gameBoard) => {
     /**
      * Constructed so that the index of each possible sequence corresponds to the
      * position the computer need to place their marker.
@@ -17,7 +17,7 @@ const blockAnyTwo = (gameBoard, actions, marker) => {
     let boardStateMap = makeStateMap(gameBoard);
 
 
-    return runTest(boardStateMap, possibles, actions, marker);
+    return runTest(boardStateMap, possibles);
 
 
 }

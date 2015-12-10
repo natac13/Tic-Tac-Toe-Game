@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 /** returns true as soon as it finds a truthy value from .some()
 which is checking to see if there is a possible match to the patterns */
-const runTest = (stateMap, patterns, actions, marker) => {
+const runTest = (stateMap, patterns) => {
     let pos;
     _.some(stateMap, function(mapPair) {
         // make vars out of the zipped list values
