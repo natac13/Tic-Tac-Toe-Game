@@ -13,7 +13,7 @@ const webpackOptions = {
     // needed so that when going to the localhost:3000 it will load the contents
     // from this directory
     contentBase: config.devServer.contentBase,
-    hot: true,
+
     quiet: false,
     // hides all the bundling file names
     noInfo: true,

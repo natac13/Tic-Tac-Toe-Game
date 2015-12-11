@@ -5,8 +5,7 @@ import _          from 'lodash';
 import configureStore  from '../app/store/configureStore';
 
 /*** actions ***/
-// import addUserMarker from '../app/actions/addUserMarker';
-import { addUserMarker } from '../app/actions/game';
+import { addMarker } from '../app/actions/game';
 
 
 
@@ -31,15 +30,15 @@ describe('updating with one or more user marker(s) using .dispatch()', () => {
     });
 
     it('should return new game state with correctly placed marker', () => {
-        store.dispatch(addUserMarker('a3', settings.user));
+        store.dispatch(addMarker('a3', settings.user));
         expect(store.getState().ticTacGame.a3).to.equal('X');
     });
 
     it('should return new game state after a few actions passed.', () => {
         const { user, comp } = store.getState().settings;
 
-        store.dispatch(addUserMarker('a3', settings.user));
-        store.dispatch(addUserMarker('b3', settings.user));
+        store.dispatch(addMarker('a3', settings.user));
+        store.dispatch(addMarker('b3', settings.user));
         const { ticTacGame } = store.getState();
         expect(ticTacGame.a3).to.equal('X');
         expect(ticTacGame.b3).to.equal('X');

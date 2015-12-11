@@ -6,10 +6,11 @@ import Board from './Board';
 /*** AI ***/
 import compTurn from '../utils/compTurn';
 
-class Main extends Component {
+export default class Main extends Component {
+
     constructor(props, context) {
         super(props, context);
-        this.canPlay = false;
+
     }
 
     placeMarker(event) {
@@ -19,20 +20,24 @@ class Main extends Component {
 
 
 
-        actions.addUserMarker(square, user);
-        this.canPlay = true;
+        actions.addMarker(square, user);
+        actions.toggleCompTurn();
 
         // I am passing in an object because that is easiery for now to convert
         // since the store was an objectt after calling .getState()
     }
 
+
     componentDidUpdate() {
-        const { gameBoard, actions, settings } = this.props;
-        if(this.canPlay) {
+        const { gameBoard, actions, settings, compCanPlay } = this.props;
+        if(compCanPlay) {
             let square = compTurn(gameBoard);
-            actions.addCompMarker(square, settings.comp);
+            actions.addMarker(square, settings.comp);
+            // have to toggle ONLY when the comp has finished a turn. If this
+            // is outside like when it was just setting to false then I get an
+            // infinite loop of toggling
+            actions.toggleCompTurn();
         }
-        this.canPlay = false;
     }
 
 
@@ -51,4 +56,3 @@ class Main extends Component {
     }
 }
 
-export default Main;

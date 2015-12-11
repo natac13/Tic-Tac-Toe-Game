@@ -10,7 +10,7 @@ import App from './containers/App';
 
 const store = configureStore();
 const rootElement = document.getElementById('app');
-
+console.log(store.getState());
 
 render(
     <Provider store={store}>

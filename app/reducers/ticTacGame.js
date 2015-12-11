@@ -14,7 +14,7 @@ const initialState = {
 
 const ticTacGame = (state = initialState, action) => {
     switch (action.type) {
-        case 'PLACE_USER_MARKER':
+        case 'PLACE_MARKER':
             return {
                 ...state,
                 [action.square]: action.marker

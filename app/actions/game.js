@@ -1,18 +1,10 @@
 import * as types from '../constants/ActionTypes';
 
-export function addUserMarker(square, userMarker) {
+export function addMarker(square, marker) {
     return {
-            type: types.PLACE_USER_MARKER,
+            type: types.PLACE_MARKER,
             square: square,
-            marker: userMarker
-        };
-}
-
-export function addCompMarker(square, compMarker) {
-    return {
-            type: types.PLACE_USER_MARKER,
-            square: square,
-            marker: compMarker
+            marker: marker
         };
 }
 
@@ -20,5 +12,11 @@ export function setUserMarker(marker) {
     return {
         type: types.SET_USER_MARKER,
         marker: marker
+    }
+}
+
+export function toggleCompTurn() {
+    return {
+        type: types.TOGGLE_COMP_TURN
     }
 }
