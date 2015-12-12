@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 
 /*** Components ***/
-import Board from './Board';
+import Board    from './Board';
 import Settings from './Settings';
+import Results  from './Results';
 
 /*** AI ***/
 import compTurn  from '../utils/compTurn';
@@ -29,7 +30,7 @@ export default class Main extends Component {
 
 
         actions.addMarker(square, user);
-        actions.toggleCompTurn();
+        actions.setCompTurn();
 
         // I am passing in an object because that is easiery for now to convert
         // since the store was an objectt after calling .getState()
@@ -39,6 +40,7 @@ export default class Main extends Component {
     componentDidUpdate() {
         const { gameBoard, actions, settings, compCanPlay } = this.props;
         if (boardFull(gameBoard)) {
+            // check for the winner
             console.log('game over need to check if winner');
             setTimeout(actions.clearBoard, 800);
         }
@@ -49,7 +51,7 @@ export default class Main extends Component {
             // have to toggle ONLY when the comp has finished a turn. If this
             // is outside like when it was just setting to false then I get an
             // infinite loop of toggling
-            actions.toggleCompTurn();
+            actions.setUserTurn();
         }
     }
 
@@ -64,10 +66,7 @@ export default class Main extends Component {
                 {/*Can pass the spread version of the state to the component and get all props from it that way in Board.*/}
                 <Settings {...this.props} />
                 <Board placeMarker={this.placeMarker.bind(this)} gameBoard={gameBoard}/>
-                <div className="board-results col span_1_of_3">
-
-                </div>
-
+                <Results clear={actions.clearBoard} />
             </div>
         );
     }

@@ -15,9 +15,15 @@ export function setUserMarker(marker) {
     }
 }
 
-export function toggleCompTurn() {
+export function setCompTurn() {
     return {
-        type: types.TOGGLE_COMP_TURN
+        type: types.SET_COMP_TURN
+    }
+}
+
+export function setUserTurn() {
+    return {
+        type: types.SET_USER_TURN
     }
 }
 

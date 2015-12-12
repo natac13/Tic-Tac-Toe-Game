@@ -1,0 +1,29 @@
+.results {
+  .restart {
+    @include set-font-size(24px);
+      text-align: center;
+      display: inline-block;
+      margin: 1em auto;
+      width: 50%;
+      padding: 0.5em;
+      height: 3em;
+      color: $text-color;
+      text-shadow: 2px 3px 2px darken($marker-color, 90);
+      background: $marker-color;
+      border-radius: 25px;
+      border: 2px solid #333;
+      box-shadow: 0 0 35px #333 inset;
+      transition: all 0.4s ease-in;
+
+
+
+      &:hover {
+        box-shadow: 0 3px 5px #333 ;
+        background: lighten($marker-color, 15);
+        color: darken($text-color, 80);
+        text-shadow: 0 -3px 5px white;
+      }
+
+
+  }
+}

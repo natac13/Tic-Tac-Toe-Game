@@ -1,0 +1,8 @@
+.settings {
+  h3 {
+    @include set-font-size(23px);
+    text-align: center;
+    color: $header-color;
+    margin-bottom: 2em;
+  }
+}

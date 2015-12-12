@@ -10,14 +10,15 @@
 }
 
 $square-color: #2A5161;
-$text-color: white;
+$text-color: #E7E7E7;
 $square-user: green;
 $square-comp: red;
 $board-color: silver;
 $open-color: #9CFFED;
-$taken-color: #91AB23;
+$header-color: #2B330A;
 $taken2: #E09A2C;
-
+$marker-color: #A4A440;
+$wood: #cc9966;
 
 html {
   box-sizing: border-box;
@@ -26,4 +27,8 @@ html {
 
 *, *:before, *:after {
   box-sizing: inherit;
+}
+
+body {
+  background: $wood;
 }

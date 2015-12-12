@@ -3,7 +3,7 @@ import _          from 'lodash';
 
 import configureStore  from '../app/store/configureStore';
 
-import { setUserMarker, toggleCompTurn } from '../app/actions/game';
+import { setUserMarker, setCompTurn } from '../app/actions/game';
 
 describe('The game settings and turn flag toggle', () => {
     let store,
@@ -20,7 +20,7 @@ describe('The game settings and turn flag toggle', () => {
     });
 
     it('should change to true when the action is called', () => {
-        store.dispatch(toggleCompTurn());
+        store.dispatch(setCompTurn());
         let { compCanPlay } = store.getState();
         expect(compCanPlay).to.equal(true);
     });

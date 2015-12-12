@@ -1,10 +1,11 @@
 .square {
   @include base-font();
   @include set-font-size(28px);
+  position: relative;
   background: rgba($square-color, 0.7);
   display: inline-block;
-  height: 100px;
-  width: 100px;
+  height: 3em;
+  width: 3em;
   margin: 0.5em;
   vertical-align: top;
   border: 3px solid $open-color;
@@ -12,6 +13,7 @@
   color: $text-color;
   transition: all 0.4s ease-in-out;
   box-shadow: 0 0 30px #333;
+
 
   &:hover {
     background: rgba($square-color, 1);

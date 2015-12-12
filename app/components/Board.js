@@ -17,7 +17,7 @@ export default class Board extends Component {
     render() {
         const { placeMarker, gameBoard } = this.props;
         return (
-            <div className="board">
+            <div className="board col span_1_of_3">
                 <div className="row">
                     <Square placeMarker={placeMarker} square={'a1'} marker={gameBoard.a1}/>
                     <Square placeMarker={placeMarker} square={'a2'} marker={gameBoard.a2}/>

@@ -1,15 +1,15 @@
+@import 'atoms/marker-picker';
+@import 'atoms/settings-header';
+
 .settings {
   position: relative;
+  padding: 0.5em;
   transition: all 0.7s linear;
 
+
   &.active {
-    transform: translate(-500px)
+    transform: translate(-1000px)
   }
 
-  button {
-    @include set-font-size(24px);
-    width: 100px;
-    height: 100px;
-    background: yellow;
-  }
+
 }
