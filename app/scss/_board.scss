@@ -1,38 +1,6 @@
-.square {
-  @include base-font();
-  @include set-font-size(28px);
-  background: rgba($square-color, 0.7);
-  display: inline-block;
-  height: 100px;
-  width: 100px;
-  margin: 0.5em;
-  vertical-align: top;
-  border: 3px solid $open-color;
-  border-radius: 15px;
-  color: $text-color;
-  transition: all 0.4s ease-in-out;
-  box-shadow: 0 0 30px #333;
+@import 'atoms/square';
+@import 'settings';
 
-  &:hover {
-    background: rgba($square-color, 1);
-    box-shadow: 0 0 5px #111;
-    border: 1px solid $open-color;
-  }
-
-  &.user {
-    background: $square-user;
-  }
-
-  &.comp {
-    background: $square-comp;
-  }
-
-  &.active {
-    box-shadow: 0 0 10px #111;
-    border: 5px solid $taken2;
-  }
-
-}
 
 .board {
   position: absolute;

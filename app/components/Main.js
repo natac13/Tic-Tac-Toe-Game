@@ -40,7 +40,7 @@ export default class Main extends Component {
         const { gameBoard, actions, settings, compCanPlay } = this.props;
         if (boardFull(gameBoard)) {
             console.log('game over need to check if winner');
-            actions.clearBoard();
+            setTimeout(actions.clearBoard, 800);
         }
 
         if(compCanPlay) {
@@ -62,7 +62,7 @@ export default class Main extends Component {
                   <h1>Tic Tac Toe</h1>
                 </header>
                 {/*Can pass the spread version of the state to the component and get all props from it that way in Board.*/}
-                <Settings settings={settings} actions={actions} />
+                <Settings {...this.props} />
                 <Board placeMarker={this.placeMarker.bind(this)} gameBoard={gameBoard}/>
                 <div className="board-results col span_1_of_3">
 
