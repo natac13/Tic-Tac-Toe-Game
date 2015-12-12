@@ -1,5 +1,6 @@
 /*** game functionality ***/
 export const PLACE_MARKER = 'PLACE_MARKER';
+export const CLEAR_BOARD = 'CLEAR_BOARD';
 
 
 /*** game settings ***/

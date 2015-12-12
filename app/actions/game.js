@@ -20,3 +20,9 @@ export function toggleCompTurn() {
         type: types.TOGGLE_COMP_TURN
     }
 }
+
+export function clearBoard() {
+    return {
+        type: types.CLEAR_BOARD
+    }
+}

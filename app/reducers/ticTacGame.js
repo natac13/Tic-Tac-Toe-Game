@@ -19,6 +19,10 @@ const ticTacGame = (state = initialState, action) => {
                 ...state,
                 [action.square]: action.marker
             };
+        case 'CLEAR_BOARD':
+            return {
+                ...initialState
+            }
         default:
             return state
     }
