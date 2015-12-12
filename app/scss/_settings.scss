@@ -1,0 +1,15 @@
+.settings {
+  position: relative;
+  transition: all 0.7s linear;
+
+  &.active {
+    transform: translate(-500px)
+  }
+
+  button {
+    @include set-font-size(24px);
+    width: 100px;
+    height: 100px;
+    background: yellow;
+  }
+}
