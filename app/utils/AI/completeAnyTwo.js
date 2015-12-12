@@ -3,12 +3,22 @@ import _ from 'lodash';
 import runTest from './helpers/runTest';
 import makeStateMap from './helpers/makeStateMap';
 
-const completeAnyTwo = (gameBoard) => {
-    const patterns = [
+const completeAnyTwo = (gameBoard, marker='O') => {
+    let patterns = [
         ' OO',
         'O O',
         'OO '
     ];
+
+    if (marker === 'X') {
+        patterns = [
+            ' XX',
+            'X X',
+            'XX '
+        ];
+    }
+
+
 
     const boardStateMap = makeStateMap(gameBoard);
 

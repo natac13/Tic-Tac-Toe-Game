@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import classnames from 'classnames';
 
 const Square = ({ placeMarker, square, marker }) => {
+
     let squareClass = classnames({
         'square': true,
         'active': !!marker,

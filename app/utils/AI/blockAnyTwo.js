@@ -3,21 +3,28 @@ import runTest from './helpers/runTest';
 import makeStateMap from './helpers/makeStateMap';
 
 
-const blockAnyTwo = (gameBoard) => {
+const blockAnyTwo = (gameBoard, marker='O') => {
     /**
      * Constructed so that the index of each possible sequence corresponds to the
      * position the computer need to place their marker.
      * @type {Array}
      */
-    const possibles = [
-        ' XX',
-        'X X',
-        'XX '
-    ]
+    let patterns = [
+            ' XX',
+            'X X',
+            'XX '
+        ]
+    if (marker === 'X') {
+        patterns = [
+            ' OO',
+            'O O',
+            'OO '
+        ]
+    }
     let boardStateMap = makeStateMap(gameBoard);
 
 
-    return runTest(boardStateMap, possibles);
+    return runTest(boardStateMap, patterns);
 
 
 }

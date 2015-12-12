@@ -1,4 +1,5 @@
 .square {
+  @include base-font();
   @include set-font-size(28px);
   background: rgba($square-color, 0.7);
   display: inline-block;
