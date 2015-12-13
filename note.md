@@ -19,5 +19,14 @@ The first bug got fix by bring `takeOppositeCorner()` inline with `sidesEmpty()`
 I fix the test to handle this case by making sure the square that is used in the action call to dispatch the store, was part of the original game board!
 
 
+# Bug after submitting
+
+I submitted to FCC but also ask for feedback from the local slack chat channel here in London Ontario. I got two very fast responses that informed me when the user wins the game gets hung up. I didn't even know the user could still win! Lucky one of those people uploaded a video of what happened for him so that I could reproduce and then fix the bug. 
+
+<!-- insert video here -->
+
+So the hung up issue watch easy to fix as line 52 (shown below) that in the `componentDidUpdate()` life cycle function I had the `clearBoard` action being placed on the stack and then the component would update. This is where the infinite loop happened since the component kept updating and placing `clearBoard()` calls on the stack. Removing the `setTimeout()` got everything running smoothly again. However the user still could win!
+
+So looking at the video again I see that if the user has two outter middle adjoining squares then the computer should place a marker in between; in the corner. this is the function I came up with for that. I have a list of 'fork' objects that can be cycled through to produce a list of possible squares. Then check if a square is open on the board and return that value so that Main.js can dispatch to the store. 
 
 

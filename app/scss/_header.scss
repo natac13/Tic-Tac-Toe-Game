@@ -9,9 +9,10 @@ header {
 
   }
 
-  a {
+  a.source-code {
     @include set-font-size(20px);
     color: purple;
+    text-decoration: none;
     &:hover {
       color: #333;
     }

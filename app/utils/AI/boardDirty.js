@@ -2,7 +2,7 @@ import _ from 'lodash';
 /**
  * Returns true if the board is dirty, meaning there is at least one square
  * taken by a marker.
- * @param  {Object} store Redux Store
+ * @param  {Object} store Redux State store.
  * @return {boolean}       true if full board.
  */
 const boardDirty = (gameBoard) => {
