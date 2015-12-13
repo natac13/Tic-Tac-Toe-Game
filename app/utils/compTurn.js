@@ -7,6 +7,7 @@ import _ from 'lodash';
 /*** ai functions ***/
 import completeAnyTwo      from './AI/completeAnyTwo';
 import blockAnyTwo         from './AI/blockAnyTwo';
+import createFork          from './AI/createFork';
 import blockFork           from './AI/blockFork';
 import takeCenterWhenEmpty from './AI/takeCenterWhenEmpty';
 import takeOppositeCorner  from './AI/takeOppositeCorner';
@@ -33,7 +34,7 @@ const compTurn = (gameBoard, marker) => {
     let square =
         completeAnyTwo(gameBoard, marker) || // capture win
         blockAnyTwo(gameBoard, marker) || // block opponent win
-        // fork || create a fork
+        createFork(gameBoard, marker) || // create a fork when user starts on side
         blockFork(gameBoard, marker) || // block opponent fork
         takeCenterWhenEmpty(gameBoard) || // play the empty center
         takeOppositeCorner(gameBoard) || // play opposite corner
