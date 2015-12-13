@@ -1,8 +1,11 @@
 import _ from 'lodash';
 /**
- * [findResults description]
+ * Find Result will use the gameStateSections line the runTest() does. This time
+ * however I find out is any of these sections matches 'OOO' or 'XXX' which
+ * indicates a win.
  * @param  {object} gameBoard the state of the gameBoard
- * @return {string}           A string message to display to the user.
+ * @return {string|boolean} A string which is the winner either X or O. false
+ * boolean if no winner.
  */
 export default function findResults(gameBoard) {
     // change the gameBoard object to an array which I can slice to check

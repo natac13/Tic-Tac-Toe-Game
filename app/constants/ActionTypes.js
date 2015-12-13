@@ -9,6 +9,6 @@ export const SET_COMP_TURN = 'SET_COMP_TURN';
 export const SET_USER_TURN = 'SET_USER_TURN';
 
 /*** win updates ***/
-// export const X_WIN = 'X_WIN';
-// export const O_WIN = 'O_WIN';
-// export const TIE = 'TIE';
+export const X_WIN = 'X_WIN';
+export const O_WIN = 'O_WIN';
+export const TIE = 'TIE';

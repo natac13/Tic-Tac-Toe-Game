@@ -1,22 +1,44 @@
 import React, { Component, PropTypes } from 'react';
 
+import ResultMessage from './ResultMessage';
+
+import findResults from '../utils/AI/helpers/findResults';
+import boardFull   from '../utils/AI/boardFull';
+
 export default class Results extends Component {
     static propTypes = {
-        clear: PropTypes.func.isRequired
+        actions: PropTypes.object.isRequired,
+        gameBoard: PropTypes.object.isRequired
     }
 
     constructor(props) {
         super(props);
     }
 
+    componentWillReceiveProps() {
+        const { gameBoard, actions } = this.props;
+        const result = findResults(gameBoard); // winner or false
+        if (result === 'X' && !boardFull(gameBoard)) {
+            actions.XWin();
+        }
+        if (result === 'O' && !boardFull(gameBoard)) {
+            actions.OWin();
+        }
+
+        if (!result && boardFull(gameBoard)) {
+            actions.tie();
+        }
+    }
+
     render() {
-        const { x, o, tie } = this.props.results
+        const { actions, results } = this.props;
+        const { x, o, tie } = results
         return (
             <div className="col span_1_of_3 results">
-                <div className="restart" onClick={this.props.clear}>Restart Game?</div>
-                <p className="result"> X Wins: <span className="num">{x}</span> </p>
-                <p className="result"> O Wins: <span className="num">{o}</span> </p>
-                <p className="result"> Ties: <span className="num">{tie}</span> </p>
+                <div className="restart" onClick={actions.clearBoard}>Restart Game?</div>
+                <ResultMessage message='X WIN' value={x} />
+                <ResultMessage message='O WIN' value={o} />
+                <ResultMessage message='Tie' value={tie} />
             </div>
         );
     }

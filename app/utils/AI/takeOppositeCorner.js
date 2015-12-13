@@ -9,7 +9,9 @@ import _ from 'lodash';
  * @param  {object} gameBoard The game board from the state of the Main.js
  * component.
  * @return {string}           the square that the comp should take based of the
- * logic. I get this be filtering the list of matches
+ * logic. I get this be filtering the list of matches first to rid of false values.
+ * If there are 2 choices I then use the length and lodash random to pick one to
+ * return.
  */
 const takeOppositeCorner = (gameBoard) => {
     const cornersPairs = [['a1', 'c3'], ['c1', 'a3']];
