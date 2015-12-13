@@ -74,7 +74,7 @@ export default class Main extends Component {
             setTimeout(actions.clearBoard, 800);
         }
         /*** normal computer turn ***/
-        if(compCanPlay) {
+        if(compCanPlay && !findResults(gameBoard)) {
             let square = compTurn(gameBoard, settings.comp);
             actions.setUserTurn();
             actions.addMarker(square, settings.comp);

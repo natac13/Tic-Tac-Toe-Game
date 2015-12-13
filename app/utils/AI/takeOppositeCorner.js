@@ -1,3 +1,4 @@
+import _ from 'lodash';
 /**
  * Takes in the gameBoard and will take the any opposite corner on the game board
  * This will happen in a sequence in compTurn()
@@ -21,9 +22,16 @@ const takeOppositeCorner = (gameBoard) => {
         }
         return false;
     });
-    return cornerPairsMatchingPattern.filter((matchingPair) => {
+
+    /* filter out the false values when the pattern does not match ***/
+    cornerPairsMatchingPattern = cornerPairsMatchingPattern.filter((matchingPair) => {
         return matchingPair !== false;
-    }).join('');
+    });
+    const len = cornerPairsMatchingPattern.length - 1;
+    const random = _.random(len);
+
+    return cornerPairsMatchingPattern[random]
+
 }
 
 

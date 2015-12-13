@@ -38,7 +38,7 @@ const compTurn = (gameBoard, marker) => {
         takeOppositeCorner(gameBoard) || // play opposite corner
         cornersEmpty(gameBoard) || // play empty corner
         sidesEmpty(gameBoard); // play empty side
-
+    console.log('square   ' + square);
 
     return square;
 

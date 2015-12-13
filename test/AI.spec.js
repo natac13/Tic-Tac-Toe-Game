@@ -192,7 +192,8 @@ describe('AI to capture a win!', () => {
 
 /*** Take Opposite Corner ***/
 describe('Taking opposite corner AI function', () => {
-    let store,
+    let squares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'],
+        store,
         settings;
     beforeEach(() => {
         store = configureStore();
@@ -235,12 +236,25 @@ describe('Taking opposite corner AI function', () => {
         expect(store.getState().ticTacGame.a1).to.equal('O');
     });
 
+    it('should choose one of two "open opposite corners". Meaning a1 and c1 taken by X so could be both a3 or c3', () => {
+        store.dispatch(addMarker('a1', settings.user));
+        store.dispatch(addMarker('c1', settings.user));
+
+        let { ticTacGame: gameBoard } = store.getState();
+        let square = takeOppositeCorner(gameBoard);
+        store.dispatch(addMarker(square, settings.comp));
+        // expect the square returned is in the original gameBoard
+        expect(_.includes(squares, square)).to.be.true;
+        expect(store.getState().ticTacGame[square]).to.equal('O');
+    })
+
 
 });
 
 /*** Take center when open ***/
 describe('Take the center when open AI function', () => {
-    let store,
+    let squares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'],
+        store,
         settings;
     beforeEach(() => {
         store = configureStore();
@@ -261,7 +275,8 @@ describe('Take the center when open AI function', () => {
 
 /*** Take an empty corner ***/
 describe('Take empty corner AI function', () => {
-    let store,
+    let squares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'],
+        store,
         settings;
     beforeEach(() => {
         store = configureStore();
@@ -272,6 +287,7 @@ describe('Take empty corner AI function', () => {
         let { ticTacGame: gameBoard } = store.getState();
         let square = cornersEmpty(gameBoard);
         store.dispatch(addMarker(square, settings.comp));
+        expect(_.includes(squares, square)).to.be.true;
         expect(store.getState().ticTacGame[square]).to.equal('O');
     });
 
@@ -283,6 +299,7 @@ describe('Take empty corner AI function', () => {
         let { ticTacGame: gameBoard } = store.getState();
         let square = cornersEmpty(gameBoard);
         store.dispatch(addMarker(square, settings.comp));
+        expect(_.includes(squares, square)).to.be.true;
         expect(store.getState().ticTacGame[square]).to.equal('O');
     });
 
@@ -293,13 +310,15 @@ describe('Take empty corner AI function', () => {
         let { ticTacGame: gameBoard } = store.getState();
         let square = cornersEmpty(gameBoard);
         store.dispatch(addMarker(square, settings.comp));
+        expect(_.includes(squares, square)).to.be.true;
         expect(store.getState().ticTacGame[square]).to.equal('O');
     });
 });
 
 /*** Take an empty side ***/
 describe('Take empty side AI function', () => {
-    let store,
+    let squares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'],
+        store,
         settings;
     beforeEach(() => {
         store = configureStore();
@@ -310,6 +329,7 @@ describe('Take empty side AI function', () => {
         let { ticTacGame: gameBoard } = store.getState();
         let square = sidesEmpty(gameBoard);
         store.dispatch(addMarker(square, settings.comp));
+        expect(_.includes(squares, square)).to.be.true;
         expect(store.getState().ticTacGame[square]).to.equal('O');
     });
 
@@ -321,16 +341,29 @@ describe('Take empty side AI function', () => {
         let { ticTacGame: gameBoard } = store.getState();
         let square = sidesEmpty(gameBoard);
         store.dispatch(addMarker(square, settings.comp));
+        expect(_.includes(squares, square)).to.be.true;
         expect(store.getState().ticTacGame[square]).to.equal('O');
     });
 
-    it('should take one of two a2 or c2 when they are open but other sides are not', () => {
+    it('should take one of two b1 or b3 when they are open but other sides are not', () => {
         store.dispatch(addMarker('a2', settings.user));
         store.dispatch(addMarker('c2', settings.comp));
 
         let { ticTacGame: gameBoard } = store.getState();
         let square = sidesEmpty(gameBoard);
         store.dispatch(addMarker(square, settings.comp));
+        expect(_.includes(squares, square)).to.be.true;
+        expect(store.getState().ticTacGame[square]).to.equal('O');
+    });
+
+    it('should take one of two a2 or c2 when they are open but other sides are not', () => {
+        store.dispatch(addMarker('b1', settings.user));
+        store.dispatch(addMarker('b3', settings.comp));
+
+        let { ticTacGame: gameBoard } = store.getState();
+        let square = sidesEmpty(gameBoard);
+        store.dispatch(addMarker(square, settings.comp));
+        expect(_.includes(squares, square)).to.be.true;
         expect(store.getState().ticTacGame[square]).to.equal('O');
     });
 });

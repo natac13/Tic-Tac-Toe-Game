@@ -23,7 +23,6 @@ const blockAnyTwo = (gameBoard, marker='O') => {
     }
     let boardStateMap = makeStateMap(gameBoard);
 
-
     return runTest(boardStateMap, patterns);
 
 
