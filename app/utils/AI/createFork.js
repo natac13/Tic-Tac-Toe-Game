@@ -23,8 +23,11 @@ const createFork = (gameBoard, marker = 'O') => {
     let availibleCorners = [];
     const center = 'b2';
     const userMarker = marker === 'O' ? 'X' : 'O';
+    const numDirtySquares = _.values(gameBoard).filter((square) => {
+        return square !== '';
+    }).length;
 
-    if (gameBoard[center] !== '') {
+    if (gameBoard[center] !== '' || numDirtySquares > 1) {
         return false;
     }
     const sidesTakenByUser = sides.filter(({ side, possibles }) => {
