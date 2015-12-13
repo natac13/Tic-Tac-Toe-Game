@@ -1,11 +1,21 @@
 header {
-    text-align: center;
+  text-align: center;
+  margin-bottom: 1.5em;
 
-    h1 {
-        @include set-font-size(64px);
-        color: green;
+  h1 {
+    @include set-font-size(64px);
+    @include trailing-border(0.5, 3px solid $header-color);
+    color: $header-color;
 
+  }
+
+  a {
+    @include set-font-size(20px);
+    color: purple;
+    &:hover {
+      color: #333;
     }
+  }
 
 }
 

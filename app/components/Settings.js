@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 import boardDirty from '../utils/AI/boardDirty';
 import classnames from 'classnames';
+import { markerClass } from '../utils/classHelpers';
 
 
 export default class Settings extends Component {
@@ -19,7 +20,9 @@ export default class Settings extends Component {
     become(event) {
         const marker = event.target.value;
         this.props.actions.setUserMarker(marker)
+
     }
+
 
 
     render() {
@@ -29,11 +32,16 @@ export default class Settings extends Component {
             span_1_of_3: true,
             settings: true,
             active: boardDirty(gameBoard)
-        })
+        });
+
+        const markerClassX = markerClass('X');
+        const markerClassO = markerClass('O');
+
         return (
             <div className={settingsClass}>
-                <button onClick={this.become.bind(this)} value="O"> Become 'O'</button>
-                <button onClick={this.become.bind(this)} value="X"> Become 'X'</button>
+                <h3 > Which Marker would you like to be? </h3>
+                <button className={markerClassO(settings.user)} onClick={this.become.bind(this)} value="O"> Become 'O'</button>
+                <button className={markerClassX(settings.user)} onClick={this.become.bind(this)} value="X"> Become 'X'</button>
             </div>
         );
     }

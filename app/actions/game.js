@@ -15,9 +15,15 @@ export function setUserMarker(marker) {
     }
 }
 
-export function toggleCompTurn() {
+export function setCompTurn() {
     return {
-        type: types.TOGGLE_COMP_TURN
+        type: types.SET_COMP_TURN
+    }
+}
+
+export function setUserTurn() {
+    return {
+        type: types.SET_USER_TURN
     }
 }
 
@@ -26,3 +32,21 @@ export function clearBoard() {
         type: types.CLEAR_BOARD
     }
 }
+
+// export function XWin() {
+//     return {
+//         type: types.X_WIN
+//     }
+// }
+
+// export function OWin() {
+//     return {
+//         type: types.O_WIN
+//     }
+// }
+
+// export function tie() {
+//     return {
+//         type: types.TIE
+//     }
+// }

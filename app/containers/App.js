@@ -28,11 +28,12 @@ class App extends Component {
 
 
 function mapStateToProps(state) {
-    const { ticTacGame: gameBoard, settings, compCanPlay } = state;
+    const { ticTacGame: gameBoard, settings, compCanPlay, results } = state;
     return {
         gameBoard,
         settings,
-        compCanPlay
+        compCanPlay,
+        results
     }
 }
 

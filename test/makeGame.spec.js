@@ -96,6 +96,7 @@ describe('Determining a full board and clearing or resetting the game back to th
             store.dispatch(actions.addMarker(square, mark))
         });
         store.dispatch(actions.clearBoard());
+        const { ticTacGame: gameBoard } = store.getState();
         expect(boardFull(gameBoard)).to.equal(false);
     })
 });

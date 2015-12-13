@@ -1,0 +1,16 @@
+@import 'atoms/restart';
+
+.results {
+  .result {
+    @include set-font-size(25px);
+    color: $header-color;
+
+    span.num {
+      background: white;
+      width: auto;
+      height: auto;
+      padding: 0 10px;
+      color: #333;
+    }
+  }
+}
