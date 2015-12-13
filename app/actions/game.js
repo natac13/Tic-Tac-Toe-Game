@@ -32,3 +32,21 @@ export function clearBoard() {
         type: types.CLEAR_BOARD
     }
 }
+
+// export function XWin() {
+//     return {
+//         type: types.X_WIN
+//     }
+// }
+
+// export function OWin() {
+//     return {
+//         type: types.O_WIN
+//     }
+// }
+
+// export function tie() {
+//     return {
+//         type: types.TIE
+//     }
+// }

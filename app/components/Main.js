@@ -8,6 +8,7 @@ import Results  from './Results';
 /*** AI ***/
 import compTurn  from '../utils/compTurn';
 import boardFull from '../utils/AI/boardFull';
+import findResults from '../utils/AI/helpers/findResults';
 
 export default class Main extends Component {
 
@@ -19,6 +20,16 @@ export default class Main extends Component {
 
     constructor(props, context) {
         super(props, context);
+        /*
+        Had to the score keeping this way since I kept getting infinite loops
+        with the component updating and calling a dispatch which is bound to
+        this.setState() which re-renders the component which causes the loop.
+         */
+        this.results = {
+            x: 0,
+            o: 0,
+            tie: 0
+        }
 
     }
 
@@ -32,41 +43,65 @@ export default class Main extends Component {
         actions.addMarker(square, user);
         actions.setCompTurn();
 
-        // I am passing in an object because that is easiery for now to convert
-        // since the store was an objectt after calling .getState()
     }
 
+    componentWillUpdate() {
+        const { gameBoard, actions, settings, compCanPlay } = this.props;
+
+        /*** the board is full so must be a tie ***/
+        if (boardFull(gameBoard)) {
+            actions.clearBoard();
+        }
+
+    }
 
     componentDidUpdate() {
         const { gameBoard, actions, settings, compCanPlay } = this.props;
-        if (boardFull(gameBoard)) {
-            // check for the winner
-            console.log('game over need to check if winner');
+        /** found a winning match  **/
+        if (!!findResults(gameBoard)) {
+            if(findResults(gameBoard) === 'X') {
+                this.results.x += 1;
+                setTimeout(actions.clearBoard, 800);
+            }
+            if(findResults(gameBoard) === 'O') {
+                this.results.o += 1;
+                setTimeout(actions.clearBoard, 800);
+            }
+        }
+        /*** board full without winning match  ***/
+        if (boardFull(gameBoard) && !findResults(gameBoard)) {
+            this.results.tie += 1;
             setTimeout(actions.clearBoard, 800);
         }
-
+        /*** normal computer turn ***/
         if(compCanPlay) {
             let square = compTurn(gameBoard, settings.comp);
+            actions.setUserTurn();
             actions.addMarker(square, settings.comp);
             // have to toggle ONLY when the comp has finished a turn. If this
-            // is outside like when it was just setting to false then I get an
             // infinite loop of toggling
-            actions.setUserTurn();
+            // is outside like when it was just setting to false then I get an
         }
     }
 
 
     render() {
-        const { gameBoard, actions, settings, compCanPlay } = this.props;
+        const { gameBoard, actions, settings, compCanPlay, results } = this.props;
         return (
             <div className="col span_3_of_3">
                 <header>
-                  <h1>Tic Tac Toe</h1>
+                  <h1>Natac's Tic Tac Toe</h1>
+                  <a
+                    href="https://github.com/natac13/Tic-Tac-Toe-Game"
+                    target="_blank"
+                    title="Github Repo">
+                    Source Code
+                </a>
                 </header>
                 {/*Can pass the spread version of the state to the component and get all props from it that way in Board.*/}
                 <Settings {...this.props} />
                 <Board placeMarker={this.placeMarker.bind(this)} gameBoard={gameBoard}/>
-                <Results clear={actions.clearBoard} />
+                <Results clear={actions.clearBoard} results={this.results}/>
             </div>
         );
     }

@@ -28,17 +28,17 @@ export default function findResults(gameBoard) {
     if (gameStateSection.some((section) => {
         return section === 'OOO';
     })) {
-        return 'O is the winner';
+        return 'O';
     }
 
     else if (gameStateSection.some((section) => {
         return section === 'XXX';
     })) {
-        return 'X is the winner';
+        return 'X';
     }
 
     else {
-        return 'Tie'
+        return false
     }
 
     // should not just return a string.

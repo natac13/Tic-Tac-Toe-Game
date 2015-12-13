@@ -12,7 +12,7 @@ const Square = ({ placeMarker, square, marker }) => {
 
     return (
 
-        <button className={squareClass} onClick={placeMarker} id={square}>
+        <button className={squareClass} onClick={placeMarker} id={square} disabled={!!marker}>
             {!!marker && marker}
         </button>
     );

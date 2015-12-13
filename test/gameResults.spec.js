@@ -24,7 +24,7 @@ describe('Find the results at the end of game', () => {
     });
 
 
-    it('should determine a tie when there are no lines of 3 matching markers on a full board', () => {
+    it('should return false when there are no lines of 3 matching markers on a full board', () => {
         store.dispatch(actions.addMarker('a1', user));
         store.dispatch(actions.addMarker('a2', comp));
         store.dispatch(actions.addMarker('a3', user));
@@ -35,14 +35,18 @@ describe('Find the results at the end of game', () => {
         store.dispatch(actions.addMarker('c2', user));
         store.dispatch(actions.addMarker('c3', comp));
         let { ticTacGame: gameBoard } = store.getState();
-        expect(findResults(gameBoard)).to.match(/tie/i);
+        expect(findResults(gameBoard)).to.be.false;
+    });
+    it('should return false when there are nothing on the game board', () => {
+        let { ticTacGame: gameBoard } = store.getState();
+        expect(findResults(gameBoard)).to.be.false;
     });
     it('should determine a win for X when there is 3 in the bottom row', () => {
         store.dispatch(actions.addMarker('c1', user));
         store.dispatch(actions.addMarker('c2', user));
         store.dispatch(actions.addMarker('c3', user));
         let { ticTacGame: gameBoard } = store.getState();
-        expect(findResults(gameBoard)).to.match(/x.+winner/i);
+        expect(findResults(gameBoard)).to.match(/x/i);
     });
     it('should determine a win for O when there is 2 in the first column', () => {
         store.dispatch(actions.addMarker('a1', comp));
@@ -51,14 +55,15 @@ describe('Find the results at the end of game', () => {
 
 
         let { ticTacGame: gameBoard } = store.getState();
-        expect(findResults(gameBoard)).to.match(/o.+winner/i);
+        expect(findResults(gameBoard)).to.match(/o/i);
     });
     it('should determine a win for X in the diagonal right', () => {
         store.dispatch(actions.addMarker('a1', user));
         store.dispatch(actions.addMarker('b2', user));
         store.dispatch(actions.addMarker('c3', user));
         let { ticTacGame: gameBoard } = store.getState();
-        console.log(gameBoard)
-        expect(findResults(gameBoard)).to.match(/x.+winner/i);
+        expect(findResults(gameBoard)).to.match(/x/i);
     });
 });
+
+
