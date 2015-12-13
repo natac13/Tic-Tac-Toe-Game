@@ -6,14 +6,14 @@ import { combineReducers } from 'redux';
 import ticTacGame        from './ticTacGame';
 import settings          from './settings';
 import compCanPlay       from './compCanPlay';
-// import results           from './results';
+import results           from './results';
 
 
 const rootReducer = combineReducers({
     ticTacGame,
     settings,
     compCanPlay,
-    // results
+    results
 });
 
 export default rootReducer;

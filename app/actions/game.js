@@ -33,20 +33,20 @@ export function clearBoard() {
     }
 }
 
-// export function XWin() {
-//     return {
-//         type: types.X_WIN
-//     }
-// }
+export function XWin() {
+    return {
+        type: types.X_WIN
+    }
+}
 
-// export function OWin() {
-//     return {
-//         type: types.O_WIN
-//     }
-// }
+export function OWin() {
+    return {
+        type: types.O_WIN
+    }
+}
 
-// export function tie() {
-//     return {
-//         type: types.TIE
-//     }
-// }
+export function tie() {
+    return {
+        type: types.TIE
+    }
+}

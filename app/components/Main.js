@@ -15,22 +15,13 @@ export default class Main extends Component {
     static propTypes = {
         gameBoard: PropTypes.object.isRequired,
         settings: PropTypes.object.isRequired,
-        actions: PropTypes.object.isRequired
+        actions: PropTypes.object.isRequired,
+        compCanPlay: PropTypes.bool.isRequired,
+        results: PropTypes.object.isRequired
     }
 
     constructor(props, context) {
         super(props, context);
-        /*
-        Had to the score keeping this way since I kept getting infinite loops
-        with the component updating and calling a dispatch which is bound to
-        this.setState() which re-renders the component which causes the loop.
-         */
-        this.results = {
-            x: 0,
-            o: 0,
-            tie: 0
-        }
-
     }
 
     placeMarker(event) {
@@ -45,42 +36,32 @@ export default class Main extends Component {
 
     }
 
-    componentWillUpdate() {
-        const { gameBoard, actions, settings, compCanPlay } = this.props;
-
-        /*** the board is full so must be a tie ***/
-        if (boardFull(gameBoard)) {
-            actions.clearBoard();
-        }
-
-    }
 
     componentDidUpdate() {
         const { gameBoard, actions, settings, compCanPlay } = this.props;
+        /***
+        I set it back to the user turn as soon as the component updates or,
+        as soon as there is a change to the state; a marker is placed on the gameBoard
+        either user or comp.
+        This was to prevent the comp from playing first after a tie game. Since
+        the flag was originally after the compturn() call
+        ***/
+        actions.setUserTurn();
         /** found a winning match  **/
         if (!!findResults(gameBoard)) {
-            if(findResults(gameBoard) === 'X') {
-                this.results.x += 1;
-                setTimeout(actions.clearBoard, 800);
-            }
-            if(findResults(gameBoard) === 'O') {
-                this.results.o += 1;
-                setTimeout(actions.clearBoard, 800);
-            }
-        }
-        /*** board full without winning match  ***/
-        if (boardFull(gameBoard) && !findResults(gameBoard)) {
-            this.results.tie += 1;
             setTimeout(actions.clearBoard, 800);
         }
+
+        /*** board full without winning match  ***/
+        if (boardFull(gameBoard) && !findResults(gameBoard)) {
+            // if I delay the call then the Results component calls the tie action
+            // twice...
+            actions.clearBoard();
+        }
         /*** normal computer turn ***/
-        if(compCanPlay) {
+        if(compCanPlay && !findResults(gameBoard) && !boardFull(gameBoard)) {
             let square = compTurn(gameBoard, settings.comp);
-            actions.setUserTurn();
             actions.addMarker(square, settings.comp);
-            // have to toggle ONLY when the comp has finished a turn. If this
-            // infinite loop of toggling
-            // is outside like when it was just setting to false then I get an
         }
     }
 
@@ -101,7 +82,7 @@ export default class Main extends Component {
                 {/*Can pass the spread version of the state to the component and get all props from it that way in Board.*/}
                 <Settings {...this.props} />
                 <Board placeMarker={this.placeMarker.bind(this)} gameBoard={gameBoard}/>
-                <Results clear={actions.clearBoard} results={this.results}/>
+                <Results results={results} gameBoard={gameBoard} actions={actions}/>
             </div>
         );
     }
