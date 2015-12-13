@@ -3,56 +3,26 @@ import _ from 'lodash';
 
 const blockFork = (gameBoard, marker = 'O') => {
     /**
-     * forks is an array of object which are the forks with the square the comp
-     * should take if available.
+     * forksPairs is an array of arrays that are the corner pairs
      * @type {Array}
      */
-    const forks = [
-        {
-            x: 'a2',
-            y: 'b1',
-            square: 'a1'
-        },
-        {
-            x: 'a2',
-            y: 'b3',
-            square: 'a3'
-        },
-        {
-            x: 'c2',
-            y: 'b1',
-            square: 'c1'
-        },
-        {
-            x: 'c2',
-            y: '31',
-            square: 'c3'
-        },
-
-    ]
+    const forksPairs = [['a1', 'c3'], ['a3', 'c1']];
+    const sides = ['a2', 'b1', 'b3', 'c2'];
+    let availibleSide = [];
     const userMarker = marker === 'O' ? 'X' : 'O';
-    /*
-    I first use to find an matching forks. Then feed it to map so I return just
-    the square value;
-     */
-    const squaresFromMatchingForks = forks.filter(({ x, y }) => {
-        return (gameBoard[x] === userMarker && gameBoard[y] === userMarker)
-    }).map(({ x, y, square }) => {
-        return square
-    });
-    // check that the gameBoard square is free. I do this since this rule is high
-    // on the list and figure there could be multiple matches during game play
-    // that my tests are not covering.
-    const availableSquares = squaresFromMatchingForks.filter((square) => {
-        return gameBoard[square] === '';
-    });
 
-    const len = availableSquares.length - 1;
+    // if (gameBoard[center] === '') { return false; }
+
+    if (forksPairs.some(([ x, y ]) => {
+        return gameBoard[x] === userMarker && gameBoard[y] === userMarker;
+    })) {
+        availibleSide = sides.filter(side => gameBoard[side] === '')
+    }
+
+    const len = availibleSide.length - 1;
     const random = _.random(len);
 
-    // the or latch will take the second value if both are false.
-    return availableSquares[random] || false;
-
+    return availibleSide[random] || false;
 
 
 }

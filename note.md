@@ -27,6 +27,12 @@ I submitted to FCC but also ask for feedback from the local slack chat channel h
 
 So the hung up issue watch easy to fix as line 52 (shown below) that in the `componentDidUpdate()` life cycle function I had the `clearBoard` action being placed on the stack and then the component would update. This is where the infinite loop happened since the component kept updating and placing `clearBoard()` calls on the stack. Removing the `setTimeout()` got everything running smoothly again. However the user still could win!
 
-So looking at the video again I see that if the user has two outter middle adjoining squares then the computer should place a marker in between; in the corner. this is the function I came up with for that. I have a list of 'fork' objects that can be cycled through to produce a list of possible squares. Then check if a square is open on the board and return that value so that Main.js can dispatch to the store. 
+So looking at the video again I see that if the user has two outter middle adjoining squares then the computer should place a marker in between; in the corner. this is the function I came up with for that. I have a list of 'fork' objects that can be cycled through to produce a list of possible squares. Then check if a square is open on the board and return that value so that Main.js can dispatch to the store.
+
+### The Real Block Fork ound by m Best Friend Mike Viner
+
+So the real fork is when the user plays a corner and the computer will play the center. User goes to opposite corner. Computer than goes to a third corner which will allow the user to create a fork. To fix this the computer should be playing a side after playing the center. 
+
+The 'mini' fork I fixed before with the video should be fixed by making a function for `createFork()` which when the user plays a side first the computer will then read that plus the empty center a play a corner instead of the center since this will create the possible fork depending on further investigation lol.... 
 
 
