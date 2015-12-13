@@ -20,6 +20,8 @@ import takeOppositeCorner  from '../app/utils/AI/takeOppositeCorner';
 import takeCenterWhenEmpty from '../app/utils/AI/takeCenterWhenEmpty';
 import cornersEmpty        from '../app/utils/AI/cornersEmpty';
 import sidesEmpty          from '../app/utils/AI/sidesEmpty';
+import blockFork           from '../app/utils/AI/blockFork';
+
 
 /*** Block Any Two ***/
 describe('The blocking AI for tic tac toe', () => {
@@ -366,4 +368,56 @@ describe('Take empty side AI function', () => {
         expect(_.includes(squares, square)).to.be.true;
         expect(store.getState().ticTacGame[square]).to.equal('O');
     });
+});
+
+/*** Block forks ***/
+describe('The blockFork() function', () => {
+    let squares = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'],
+        store,
+        settings;
+    beforeEach(() => {
+        store = configureStore();
+        settings = store.getState().settings;
+    });
+
+    it('should place a marker at a1 when a2 and b1 are taken by user', () => {
+        store.dispatch(addMarker('a2', settings.user));
+        store.dispatch(addMarker('b1', settings.user));
+
+        let { ticTacGame: gameBoard } = store.getState();
+        let square = blockFork(gameBoard, settings.comp);
+        store.dispatch(addMarker(square, settings.comp));
+        expect(store.getState().ticTacGame.a1).to.equal(settings.comp);
+    });
+
+    it('should place a marker at a3 when a2 and b3 are taken by user', () => {
+        store.dispatch(addMarker('a2', settings.user));
+        store.dispatch(addMarker('b3', settings.user));
+
+        let { ticTacGame: gameBoard } = store.getState();
+        let square = blockFork(gameBoard, settings.comp);
+        store.dispatch(addMarker(square, settings.comp));
+        expect(store.getState().ticTacGame.a3).to.equal(settings.comp);
+    });
+
+    it('should place a marker at c1 when c2 and b1 are taken by user', () => {
+        store.dispatch(addMarker('c2', settings.user));
+        store.dispatch(addMarker('b1', settings.user));
+
+        let { ticTacGame: gameBoard } = store.getState();
+        let square = blockFork(gameBoard, settings.comp);
+        store.dispatch(addMarker(square, settings.comp));
+        expect(store.getState().ticTacGame.c1).to.equal(settings.comp);
+    });
+
+    it('should return a false value when there is a possible for with b1 and c2 but the square at c1 is taken', () => {
+        store.dispatch(addMarker('c2', settings.user));
+        store.dispatch(addMarker('b1', settings.user));
+
+        store.dispatch(addMarker('c1', settings.comp));
+
+        let { ticTacGame: gameBoard } = store.getState();
+        let square = blockFork(gameBoard, settings.comp);
+        expect(square).to.be.false;
+    })
 });

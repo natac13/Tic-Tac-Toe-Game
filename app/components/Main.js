@@ -49,7 +49,7 @@ export default class Main extends Component {
         actions.setUserTurn();
         /** found a winning match  **/
         if (!!findResults(gameBoard)) {
-            setTimeout(actions.clearBoard, 800);
+            actions.clearBoard();
         }
 
         /*** board full without winning match  ***/
@@ -73,6 +73,7 @@ export default class Main extends Component {
                 <header>
                   <h1>Natac's Tic Tac Toe</h1>
                   <a
+                    className="source-code"
                     href="https://github.com/natac13/Tic-Tac-Toe-Game"
                     target="_blank"
                     title="Github Repo">

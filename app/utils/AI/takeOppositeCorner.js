@@ -32,7 +32,7 @@ const takeOppositeCorner = (gameBoard) => {
     const len = cornerPairsMatchingPattern.length - 1;
     const random = _.random(len);
 
-    return cornerPairsMatchingPattern[random]
+    return cornerPairsMatchingPattern[random] || false;
 
 }
 

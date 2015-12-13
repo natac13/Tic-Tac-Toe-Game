@@ -9,7 +9,7 @@ const cornersEmpty = (gameBoard) => {
     const len = openCorners.length - 1;
     const random = _.random(0, len);
 
-    return openCorners[random];
+    return openCorners[random] || false;
 
 
 }

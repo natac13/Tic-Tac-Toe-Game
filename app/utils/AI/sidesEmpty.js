@@ -9,7 +9,7 @@ const sidesEmpty = (gameBoard) => {
     const len = openSides.length - 1;
     const random = _.random(0, len);
 
-    return openSides[random];
+    return openSides[random] || false;
 
 
 }
